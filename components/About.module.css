@@ -1,0 +1,157 @@
+.about {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.avatarCol {
+  position: relative;
+}
+
+.avatarFrame {
+  position: relative;
+  border-radius: 24px;
+  overflow: visible;
+  background: linear-gradient(135deg, var(--accent-glow), var(--accent-glow-blue));
+  padding: 20px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--card-shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatarImg {
+  object-fit: contain;
+  border-radius: 16px;
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.2));
+}
+
+.avatarBadge {
+  position: absolute;
+  bottom: -16px;
+  left: 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 30px;
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  box-shadow: var(--card-shadow);
+  white-space: nowrap;
+}
+
+.experienceBadge {
+  position: absolute;
+  top: -16px;
+  right: 20px;
+  background: var(--accent-primary);
+  border-radius: 16px;
+  padding: 12px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 20px var(--accent-glow);
+  animation: float 3s ease-in-out infinite;
+}
+
+.expNum {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800;
+  font-size: 1.6rem;
+  color: white;
+  line-height: 1;
+}
+
+.expText {
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.9);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.textCol { }
+
+.bio {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.85;
+  margin-bottom: 20px;
+}
+
+.highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 28px 0;
+}
+
+.highlight {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  transition: all 0.25s ease;
+}
+
+.highlight:hover {
+  border-color: var(--accent-primary);
+  background: var(--accent-glow);
+  transform: translateX(6px);
+}
+
+.highlightIcon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.highlightText {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  transition: color 0.2s ease;
+  text-decoration: none;
+  padding: 6px 0;
+  border-bottom: 1px solid transparent;
+}
+
+.contactItem:hover {
+  color: var(--accent-primary);
+  border-bottom-color: var(--accent-primary);
+}
+
+@media (max-width: 1024px) {
+  .about {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .avatarFrame {
+    max-width: 360px;
+    margin: 0 auto;
+  }
+}

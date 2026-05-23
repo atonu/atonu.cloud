@@ -1,0 +1,139 @@
+.skillsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 48px;
+  margin-bottom: 60px;
+  align-items: start;
+}
+
+.subsectionTitle {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 28px;
+}
+
+/* Rings */
+.ringsSection {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 32px 28px;
+  box-shadow: var(--card-shadow);
+}
+
+.rings {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.ringItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.ring {
+  position: relative;
+  width: 90px; height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ring svg {
+  position: absolute;
+  top: 0; left: 0;
+  transform: rotate(-90deg);
+}
+
+.ringValue {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  z-index: 1;
+}
+
+.ringLabel {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+/* Bars */
+.barsSection {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 32px 28px;
+  box-shadow: var(--card-shadow);
+}
+
+.bars {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.skillBar { }
+
+.skillBarHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.skillBarName {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.skillBarLevel {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.skillBarTrack {
+  height: 7px;
+  background: var(--skill-bar-bg);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.skillBarFill {
+  height: 100%;
+  border-radius: 10px;
+  position: relative;
+  background-size: 200% auto;
+}
+
+/* Tag Cloud */
+.tagCloud {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 32px 28px;
+  box-shadow: var(--card-shadow);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+@media (max-width: 768px) {
+  .skillsGrid { grid-template-columns: 1fr; }
+  .rings { grid-template-columns: repeat(2, 1fr); }
+}
