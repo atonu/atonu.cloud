@@ -7,8 +7,8 @@ import { Home, User, Briefcase, Code2, Sparkles, Mail, Box } from 'lucide-react'
 const navItems = [
   { id: 'home',       Icon: Home,      label: 'Home' },
   { id: 'about',      Icon: User,      label: 'About' },
-  { id: 'experience', Icon: Briefcase, label: 'Experience' },
   { id: 'skills',     Icon: Code2,     label: 'Skills' },
+  { id: 'experience', Icon: Briefcase, label: 'Experience' },
   { id: 'hobbies',    Icon: Sparkles,  label: 'Hobbies' },
   { id: 'contact',    Icon: Mail,      label: 'Contact' },
 ];
@@ -49,7 +49,11 @@ export default function Navbar() {
   };
 
   const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    if (id === 'home') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (

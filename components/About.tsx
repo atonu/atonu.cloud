@@ -1,8 +1,6 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import Image from 'next/image';
-import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import styles from './About.module.css';
 
@@ -20,44 +18,25 @@ const highlights = [
 
 export default function About() {
   const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
-  const textY = useTransform(scrollYProgress, [0, 1], ['30px', '-30px']);
 
   return (
     <section id="about" className="section" ref={ref}>
       <div className={`section-inner ${styles.about}`}>
-        {/* LEFT: 3D Workstation */}
+        {/* LEFT: 3D Workstation and details (Scrolls) */}
         <div className={styles.sceneCol}>
           <div className={styles.sceneFrame}>
             <ThreeScene />
-          </div>
+            
+            <div className={styles.avatarBadge}>
+              <span>🇧🇩</span>
+              <span>Dhaka, Bangladesh</span>
+            </div>
 
-          <div className={styles.avatarBadge}>
-            <span>🇧🇩</span>
-            <span>Dhaka, Bangladesh</span>
+            <div className={styles.experienceBadge}>
+              <span className={styles.expNum}>7+</span>
+              <span className={styles.expText}>Years Exp.</span>
+            </div>
           </div>
-
-          <div className={styles.experienceBadge}>
-            <span className={styles.expNum}>7+</span>
-            <span className={styles.expText}>Years Exp.</span>
-          </div>
-        </div>
-
-        {/* RIGHT: Text */}
-        <motion.div className={styles.textCol} style={{ y: textY }}>
-          <p className="section-label">About Me</p>
-          <h2 className="section-title">
-            Crafting <span>Digital Experiences</span> with Passion
-          </h2>
-          <p className={styles.bio}>
-            I&apos;m a Senior Software Engineer and Product Manager with over 7 years of experience
-            building full-stack SaaS platforms and microservices architecture. Based in Dhaka,
-            Bangladesh, I specialize in creating high-performance, scalable systems.
-          </p>
-          <p className={styles.bio}>
-            From architecting distributed cloud systems to leading blockchain-based product
-            development, I thrive at the intersection of technical excellence and product thinking.
-          </p>
 
           <div className={styles.highlights}>
             {highlights.map((h, i) => (
@@ -80,7 +59,24 @@ export default function About() {
               </a>
             ))}
           </div>
-        </motion.div>
+        </div>
+
+        {/* RIGHT: Text (Sticky) */}
+        <div className={styles.textCol}>
+          <p className="section-label">About Me</p>
+          <h2 className="section-title">
+            Crafting <span>Digital Experiences</span> with Passion
+          </h2>
+          <p className={styles.bio}>
+            I&apos;m a Senior Software Engineer and Product Manager with over 7 years of experience
+            building full-stack SaaS platforms and microservices architecture. Based in Dhaka,
+            Bangladesh, I specialize in creating high-performance, scalable systems.
+          </p>
+          <p className={styles.bio}>
+            From architecting distributed cloud systems to leading blockchain-based product
+            development, I thrive at the intersection of technical excellence and product thinking.
+          </p>
+        </div>
       </div>
     </section>
   );

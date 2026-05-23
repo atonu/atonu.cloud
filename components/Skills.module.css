@@ -115,11 +115,11 @@
 
 /* Rings */
 .ringsSection {
-  background: rgba(255,255,255,0.03);
+  background: rgba(255,255,255,0.01);
   border: 1px solid var(--border-color);
   border-radius: 20px;
   padding: 28px 24px;
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(16px);
   box-shadow: var(--card-shadow);
 }
 
@@ -167,11 +167,11 @@
 
 /* Bars */
 .barsSection {
-  background: rgba(255,255,255,0.03);
+  background: rgba(255,255,255,0.01);
   border: 1px solid var(--border-color);
   border-radius: 20px;
   padding: 28px 24px;
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(16px);
   box-shadow: var(--card-shadow);
 }
 

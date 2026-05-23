@@ -82,8 +82,45 @@ export default function WorkExperience() {
   return (
     <section id="experience" className={styles.expSection}>
       <div className={styles.expLayout}>
-        {/* LEFT: Scrolling timeline */}
-        <div className={styles.leftScroll}>
+        {/* LEFT: Sticky panel with title and image */}
+        <div className={styles.stickySide}>
+          <div className={styles.stickyContent}>
+            <p className="section-label">Career Journey</p>
+            <h2 className="section-title">Work<br /><span>Experience</span></h2>
+            <p className={styles.stickyDesc}>
+              From Dhaka to Europe and the USA — 7+ years building great software across borders
+            </p>
+
+            {/* Stats */}
+            <div className={styles.expStats}>
+              {[
+                { num: '6', label: 'Companies' },
+                { num: '4', label: 'Countries' },
+                { num: '7+', label: 'Years' },
+              ].map((s) => (
+                <div key={s.label} className={styles.expStat}>
+                  <div className={styles.expStatNum}>{s.num}</div>
+                  <div className={styles.expStatLabel}>{s.label}</div>
+                </div>
+              ))}
+            </div>
+
+            {/* Superman Avatar */}
+            <div className={styles.supermanWrap}>
+              <Image
+                src="/avatars/superman.png"
+                alt="Atonu as Superman"
+                width={200}
+                height={240}
+                className={styles.supermanImg}
+              />
+              <div className={styles.supermanBadge}>⚡ Super Engineer!</div>
+            </div>
+          </div>
+        </div>
+
+        {/* RIGHT: Scrolling timeline */}
+        <div className={styles.scrollSide}>
           <div className="timeline">
             {experiences.map((exp, i) => (
               <motion.div
@@ -120,43 +157,6 @@ export default function WorkExperience() {
                 </div>
               </motion.div>
             ))}
-          </div>
-        </div>
-
-        {/* RIGHT: Sticky panel with Superman avatar */}
-        <div className={styles.rightSticky}>
-          <div className={styles.stickyContent}>
-            <p className="section-label">Career Journey</p>
-            <h2 className="section-title">Work<br /><span>Experience</span></h2>
-            <p className={styles.stickyDesc}>
-              From Dhaka to Europe and the USA — 7+ years building great software across borders
-            </p>
-
-            {/* Stats */}
-            <div className={styles.expStats}>
-              {[
-                { num: '6', label: 'Companies' },
-                { num: '4', label: 'Countries' },
-                { num: '7+', label: 'Years' },
-              ].map((s) => (
-                <div key={s.label} className={styles.expStat}>
-                  <div className={styles.expStatNum}>{s.num}</div>
-                  <div className={styles.expStatLabel}>{s.label}</div>
-                </div>
-              ))}
-            </div>
-
-            {/* Superman Avatar */}
-            <div className={styles.supermanWrap}>
-              <Image
-                src="/avatars/superman.png"
-                alt="Atonu as Superman"
-                width={200}
-                height={240}
-                className={styles.supermanImg}
-              />
-              <div className={styles.supermanBadge}>⚡ Super Engineer!</div>
-            </div>
           </div>
         </div>
       </div>

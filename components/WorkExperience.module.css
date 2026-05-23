@@ -1,13 +1,15 @@
-/* Work Experience — sticky right, scrolling left */
+/* Work Experience — sticky left, scrolling right */
 .expSection {
   position: relative;
-  z-index: 1;
+  z-index: 10;
   background: var(--bg-primary);
+  margin-top: -100vh; /* Slides up and covers the sticky skills section */
+  box-shadow: 0 -20px 50px rgba(0,0,0,0.5); /* Adds a layered card shadow */
 }
 
 .expLayout {
   display: grid;
-  grid-template-columns: 1.4fr 1fr;
+  grid-template-columns: 1fr 1.4fr;
   max-width: 1200px;
   margin: 0 auto;
   padding: 100px 60px;
@@ -15,13 +17,8 @@
   align-items: start;
 }
 
-/* LEFT — scrolls normally */
-.leftScroll {
-  padding-top: 20px;
-}
-
-/* RIGHT — sticky to top while left scrolls */
-.rightSticky {
+/* LEFT — sticky to top while right scrolls */
+.stickySide {
   position: sticky;
   top: 100px;
   align-self: start;
@@ -39,6 +36,11 @@
   line-height: 1.7;
   margin-bottom: 28px;
   margin-top: 4px;
+}
+
+/* RIGHT — scrolls normally */
+.scrollSide {
+  padding-top: 20px;
 }
 
 /* Stats row */
@@ -199,10 +201,9 @@
     padding: 80px 40px;
     gap: 40px;
   }
-  .rightSticky {
+  .stickySide {
     position: relative;
     top: 0;
-    order: -1;
   }
 }
 

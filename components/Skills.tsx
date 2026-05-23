@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import FlyingSkillsGrid from './FlyingSkillsGrid';
 import styles from './Skills.module.css';
 
 const coreSkills = [
@@ -17,13 +18,6 @@ const skillRings = [
   { name: 'Cloud / AWS', value: 82 },
   { name: 'DevOps', value: 78 },
   { name: 'Product Mgmt', value: 88 },
-];
-
-const techTags = [
-  'JavaScript', 'HTML/CSS', 'Go', 'Python', 'Azure', 'Blockchain',
-  'Docker', 'Redis', 'PostgreSQL', 'CI/CD', 'C++', 'SQL',
-  'Firebase', 'Amazon S3', 'State Management', 'Sass', 'Grid/Flex',
-  'PWA', 'Microservices', 'REST APIs', 'GraphQL', 'Tailwind',
 ];
 
 function SkillRing({ name, value }: { name: string; value: number }) {
@@ -77,52 +71,37 @@ function SkillBar({ name, level, color }: { name: string; level: number; color: 
 export default function Skills() {
   return (
     <section id="skills" className={styles.skillsSection}>
-      {/* Scroll-driven striped background (argyleink ZEdrzJZ style) */}
+      {/* Scroll-driven striped background (argyleink style) */}
       <div className={styles.scrollBg} aria-hidden="true">
         {Array.from({ length: 12 }).map((_, i) => (
           <div key={i} className={styles.scrollStripe} style={{ animationDelay: `${i * -0.4}s` }} />
         ))}
       </div>
 
-      <div className={styles.skillsInner}>
-        <p className="section-label">Technical Expertise</p>
-        <h2 className="section-title">Skills &amp; <span>Technologies</span></h2>
-        <p className="section-subtitle">A diverse toolkit built over 7+ years of real-world engineering</p>
+      <FlyingSkillsGrid>
+        <div className={styles.skillsInner}>
+          <p className="section-label">Technical Expertise</p>
+          <h2 className="section-title">Skills &amp; <span>Technologies</span></h2>
+          <p className="section-subtitle">A diverse toolkit built over 7+ years of real-world engineering</p>
 
-        <div className={styles.skillsGrid}>
-          <div className={styles.ringsSection}>
-            <h3 className={styles.subsectionTitle}>Competency</h3>
-            <div className={styles.rings}>
-              {skillRings.map((r) => <SkillRing key={r.name} {...r} />)}
+          <div className={styles.skillsGrid}>
+            <div className={styles.ringsSection}>
+              <h3 className={styles.subsectionTitle}>Competency</h3>
+              <div className={styles.rings}>
+                {skillRings.map((r) => <SkillRing key={r.name} {...r} />)}
+              </div>
             </div>
-          </div>
 
-          <div className={styles.barsSection}>
-            <h3 className={styles.subsectionTitle}>Core Stack</h3>
-            <div className={styles.bars}>
-              {coreSkills.map((s) => <SkillBar key={s.name} {...s} />)}
+            <div className={styles.barsSection}>
+              <h3 className={styles.subsectionTitle}>Core Stack</h3>
+              <div className={styles.bars}>
+                {coreSkills.map((s) => <SkillBar key={s.name} {...s} />)}
+              </div>
             </div>
           </div>
         </div>
+      </FlyingSkillsGrid>
 
-        <div className={styles.tagCloud}>
-          <h3 className={styles.subsectionTitle}>Also Proficient In</h3>
-          <div className={styles.tags}>
-            {techTags.map((tag, i) => (
-              <motion.span
-                key={tag}
-                className="tag"
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.04 }}
-              >
-                {tag}
-              </motion.span>
-            ))}
-          </div>
-        </div>
-      </div>
     </section>
   );
 }
