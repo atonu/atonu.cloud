@@ -1,41 +1,139 @@
-.skillsGrid {
-  display: grid;
-  grid-template-columns: 1fr 1.4fr;
-  gap: 48px;
-  margin-bottom: 60px;
-  align-items: start;
+/* Skills section with scroll-driven animated background */
+.skillsSection {
+  position: relative;
+  padding: 100px 60px;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* ── SCROLL-DRIVEN STRIPE BACKGROUND (argyleink ZEdrzJZ style) ── */
+.scrollBg {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.scrollStripe {
+  flex: 1;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 8px,
+    rgba(245, 166, 35, 0.03) 8px,
+    rgba(245, 166, 35, 0.03) 16px
+  );
+  animation: stripe-scroll 8s linear infinite;
+  transform-origin: left center;
+}
+
+/* Alternate stripes go opposite direction */
+.scrollStripe:nth-child(even) {
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 8px,
+    rgba(79, 110, 247, 0.03) 8px,
+    rgba(79, 110, 247, 0.03) 16px
+  );
+  animation: stripe-scroll-rev 10s linear infinite;
+}
+
+/* Scroll-linked animation via animation-timeline */
+@keyframes stripe-scroll {
+  from { background-position: 0 0; }
+  to { background-position: 120px 120px; }
+}
+
+@keyframes stripe-scroll-rev {
+  from { background-position: 0 0; }
+  to { background-position: -120px 120px; }
+}
+
+/* Apply scroll-driven animation where supported */
+@supports (animation-timeline: scroll()) {
+  .scrollStripe {
+    animation: stripe-scroll-driven linear;
+    animation-timeline: scroll();
+    animation-range: 0% 100%;
+  }
+
+  @keyframes stripe-scroll-driven {
+    from { background-position: 0 0; transform: translateX(-8px); }
+    to { background-position: 120px 120px; transform: translateX(8px); }
+  }
+
+  .scrollStripe:nth-child(even) {
+    animation: stripe-scroll-driven-rev linear;
+    animation-timeline: scroll();
+    animation-range: 0% 100%;
+  }
+
+  @keyframes stripe-scroll-driven-rev {
+    from { background-position: 0 0; transform: translateX(8px); }
+    to { background-position: -120px 120px; transform: translateX(-8px); }
+  }
+}
+
+/* Gradient overlay on top of stripes for readability */
+.skillsSection::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 50%, var(--bg-secondary) 30%, transparent 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.skillsInner {
+  position: relative;
+  z-index: 2;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 .subsectionTitle {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 1rem;
+  font-size: 0.75rem;
   font-weight: 700;
-  color: var(--text-secondary);
+  color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 1.5px;
-  margin-bottom: 28px;
+  letter-spacing: 2px;
+  margin-bottom: 24px;
+}
+
+.skillsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 40px;
+  margin-bottom: 48px;
+  align-items: start;
 }
 
 /* Rings */
 .ringsSection {
-  background: var(--bg-card);
+  background: rgba(255,255,255,0.03);
   border: 1px solid var(--border-color);
   border-radius: 20px;
-  padding: 32px 28px;
+  padding: 28px 24px;
+  backdrop-filter: blur(20px);
   box-shadow: var(--card-shadow);
 }
 
 .rings {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 24px;
+  gap: 20px;
 }
 
 .ringItem {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .ring {
@@ -55,13 +153,13 @@
 .ringValue {
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
-  font-size: 1.05rem;
+  font-size: 1rem;
   color: var(--text-primary);
   z-index: 1;
 }
 
 .ringLabel {
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: var(--text-secondary);
   text-align: center;
@@ -69,43 +167,44 @@
 
 /* Bars */
 .barsSection {
-  background: var(--bg-card);
+  background: rgba(255,255,255,0.03);
   border: 1px solid var(--border-color);
   border-radius: 20px;
-  padding: 32px 28px;
+  padding: 28px 24px;
+  backdrop-filter: blur(20px);
   box-shadow: var(--card-shadow);
 }
 
 .bars {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
 }
 
-.skillBar { }
+.skillBar {}
 
 .skillBarHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 7px;
 }
 
 .skillBarName {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 600;
   color: var(--text-primary);
 }
 
 .skillBarLevel {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 700;
   color: var(--accent-primary);
   font-family: 'Space Grotesk', sans-serif;
 }
 
 .skillBarTrack {
-  height: 7px;
+  height: 6px;
   background: var(--skill-bar-bg);
   border-radius: 10px;
   overflow: hidden;
@@ -114,17 +213,15 @@
 .skillBarFill {
   height: 100%;
   border-radius: 10px;
-  position: relative;
-  background-size: 200% auto;
 }
 
 /* Tag Cloud */
 .tagCloud {
-  background: var(--bg-card);
+  background: rgba(255,255,255,0.03);
   border: 1px solid var(--border-color);
   border-radius: 20px;
-  padding: 32px 28px;
-  box-shadow: var(--card-shadow);
+  padding: 28px 24px;
+  backdrop-filter: blur(20px);
 }
 
 .tags {
@@ -134,6 +231,7 @@
 }
 
 @media (max-width: 768px) {
+  .skillsSection { padding: 70px 24px; }
   .skillsGrid { grid-template-columns: 1fr; }
-  .rings { grid-template-columns: repeat(2, 1fr); }
+  .rings { grid-template-columns: repeat(2,1fr); }
 }

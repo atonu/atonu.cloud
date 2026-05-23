@@ -1,37 +1,29 @@
 .about {
   display: grid;
-  grid-template-columns: 1fr 1.3fr;
-  gap: 80px;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 72px;
   align-items: center;
 }
 
-.avatarCol {
+/* 3D Scene column */
+.sceneCol {
   position: relative;
 }
 
-.avatarFrame {
-  position: relative;
+.sceneFrame {
+  width: 100%;
+  height: 440px;
   border-radius: 24px;
-  overflow: visible;
-  background: linear-gradient(135deg, var(--accent-glow), var(--accent-glow-blue));
-  padding: 20px;
+  overflow: hidden;
   border: 1px solid var(--border-color);
+  background: radial-gradient(ellipse at center, rgba(79,110,247,0.08) 0%, var(--bg-card) 70%);
   box-shadow: var(--card-shadow);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.avatarImg {
-  object-fit: contain;
-  border-radius: 16px;
-  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.2));
 }
 
 .avatarBadge {
   position: absolute;
   bottom: -16px;
-  left: 24px;
+  left: 20px;
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: 30px;
@@ -39,7 +31,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   font-weight: 600;
   color: var(--text-secondary);
   box-shadow: var(--card-shadow);
@@ -63,59 +55,61 @@
 .expNum {
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 800;
-  font-size: 1.6rem;
-  color: white;
+  font-size: 1.5rem;
+  color: #0a0a0f;
   line-height: 1;
 }
 
 .expText {
-  font-size: 0.65rem;
-  color: rgba(255,255,255,0.9);
-  font-weight: 600;
+  font-size: 0.62rem;
+  color: rgba(10,10,15,0.8);
+  font-weight: 700;
   white-space: nowrap;
 }
 
-.textCol { }
+/* Text column */
+.textCol {}
 
 .bio {
-  font-size: 1rem;
+  font-size: 0.96rem;
   color: var(--text-secondary);
   line-height: 1.85;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .highlights {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  margin: 28px 0;
+  gap: 12px;
+  margin: 24px 0;
 }
 
 .highlight {
   display: flex;
   align-items: flex-start;
   gap: 14px;
-  padding: 14px 18px;
-  background: var(--bg-card);
+  padding: 13px 16px;
+  background: rgba(255,255,255,0.03);
   border: 1px solid var(--border-subtle);
   border-radius: 12px;
   transition: all 0.25s ease;
+  cursor: none;
 }
 
 .highlight:hover {
-  border-color: var(--accent-primary);
+  border-color: rgba(245,166,35,0.3);
   background: var(--accent-glow);
   transform: translateX(6px);
 }
 
 .highlightIcon {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   flex-shrink: 0;
   margin-top: 2px;
 }
 
 .highlightText {
-  font-size: 0.88rem;
+  font-size: 0.84rem;
   color: var(--text-secondary);
   line-height: 1.5;
 }
@@ -123,25 +117,25 @@
 .contactInfo {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-top: 8px;
+  gap: 8px;
 }
 
 .contactItem {
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: 0.88rem;
+  font-size: 0.84rem;
   color: var(--text-secondary);
   transition: color 0.2s ease;
   text-decoration: none;
-  padding: 6px 0;
+  padding: 5px 0;
   border-bottom: 1px solid transparent;
+  cursor: none;
 }
 
 .contactItem:hover {
   color: var(--accent-primary);
-  border-bottom-color: var(--accent-primary);
+  border-bottom-color: rgba(245,166,35,0.3);
 }
 
 @media (max-width: 1024px) {
@@ -149,9 +143,5 @@
     grid-template-columns: 1fr;
     gap: 48px;
   }
-
-  .avatarFrame {
-    max-width: 360px;
-    margin: 0 auto;
-  }
+  .sceneFrame { height: 340px; max-width: 480px; margin: 0 auto; }
 }

@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useRef } from 'react';
 import styles from './Skills.module.css';
 
 const coreSkills = [
@@ -31,12 +30,11 @@ function SkillRing({ name, value }: { name: string; value: number }) {
   const radius = 38;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference - (value / 100) * circumference;
-
   return (
     <div className={styles.ringItem}>
       <div className={styles.ring}>
         <svg width="90" height="90" viewBox="0 0 90 90">
-          <circle cx="45" cy="45" r={radius} stroke="var(--skill-bar-bg)" strokeWidth="7" fill="none" />
+          <circle cx="45" cy="45" r={radius} stroke="rgba(255,255,255,0.08)" strokeWidth="7" fill="none" />
           <motion.circle
             cx="45" cy="45" r={radius}
             stroke="var(--accent-primary)" strokeWidth="7" fill="none"
@@ -45,7 +43,7 @@ function SkillRing({ name, value }: { name: string; value: number }) {
             initial={{ strokeDashoffset: circumference }}
             whileInView={{ strokeDashoffset: offset }}
             viewport={{ once: true }}
-            transition={{ duration: 1.2, ease: 'easeOut', delay: 0.2 }}
+            transition={{ duration: 1.2, ease: 'easeOut', delay: 0.1 }}
           />
         </svg>
         <span className={styles.ringValue}>{value}%</span>
@@ -65,7 +63,7 @@ function SkillBar({ name, level, color }: { name: string; level: number; color: 
       <div className={styles.skillBarTrack}>
         <motion.div
           className={styles.skillBarFill}
-          style={{ backgroundColor: color }}
+          style={{ backgroundColor: color, boxShadow: `0 0 10px ${color}55` }}
           initial={{ width: 0 }}
           whileInView={{ width: `${level}%` }}
           viewport={{ once: true }}
@@ -77,40 +75,38 @@ function SkillBar({ name, level, color }: { name: string; level: number; color: 
 }
 
 export default function Skills() {
-  const ref = useRef<HTMLElement>(null);
-
   return (
-    <section id="skills" className="section" ref={ref}
-      style={{ background: 'linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%)' }}
-    >
-      <div className="section-inner">
+    <section id="skills" className={styles.skillsSection}>
+      {/* Scroll-driven striped background (argyleink ZEdrzJZ style) */}
+      <div className={styles.scrollBg} aria-hidden="true">
+        {Array.from({ length: 12 }).map((_, i) => (
+          <div key={i} className={styles.scrollStripe} style={{ animationDelay: `${i * -0.4}s` }} />
+        ))}
+      </div>
+
+      <div className={styles.skillsInner}>
         <p className="section-label">Technical Expertise</p>
         <h2 className="section-title">Skills &amp; <span>Technologies</span></h2>
-        <p className="section-subtitle">
-          A diverse toolkit built over 7+ years of real-world product engineering
-        </p>
+        <p className="section-subtitle">A diverse toolkit built over 7+ years of real-world engineering</p>
 
         <div className={styles.skillsGrid}>
-          {/* Skill rings */}
           <div className={styles.ringsSection}>
-            <h3 className={styles.subsectionTitle}>Competency Overview</h3>
+            <h3 className={styles.subsectionTitle}>Competency</h3>
             <div className={styles.rings}>
               {skillRings.map((r) => <SkillRing key={r.name} {...r} />)}
             </div>
           </div>
 
-          {/* Skill bars */}
           <div className={styles.barsSection}>
-            <h3 className={styles.subsectionTitle}>Core Technologies</h3>
+            <h3 className={styles.subsectionTitle}>Core Stack</h3>
             <div className={styles.bars}>
               {coreSkills.map((s) => <SkillBar key={s.name} {...s} />)}
             </div>
           </div>
         </div>
 
-        {/* Tech tags cloud */}
         <div className={styles.tagCloud}>
-          <h3 className={styles.subsectionTitle} style={{ marginBottom: '20px' }}>Also proficient in</h3>
+          <h3 className={styles.subsectionTitle}>Also Proficient In</h3>
           <div className={styles.tags}>
             {techTags.map((tag, i) => (
               <motion.span

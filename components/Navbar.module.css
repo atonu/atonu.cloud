@@ -1,3 +1,4 @@
+/* === NAVBAR - matches reference design exactly === */
 .navbar {
   position: fixed;
   left: 0; top: 0; bottom: 0;
@@ -7,12 +8,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 0;
+  padding: 20px 0 24px;
   z-index: 1000;
-  backdrop-filter: blur(20px);
-  transition: background 0.3s ease, border-color 0.3s ease;
+  transition: background 0.3s, border-color 0.3s;
 }
 
+/* Logo - golden "A" box at top */
 .logo {
   width: 44px; height: 44px;
   background: var(--accent-primary);
@@ -22,71 +23,82 @@
   justify-content: center;
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 800;
-  font-size: 1.4rem;
-  color: white;
-  cursor: pointer;
-  margin-bottom: 32px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 16px var(--accent-glow);
+  font-size: 1.5rem;
+  color: #0a0a0f;
+  cursor: none;
+  margin-bottom: 28px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: none;
+  box-shadow: 0 4px 20px rgba(245,166,35,0.3);
+  flex-shrink: 0;
 }
 
 .logo:hover {
-  transform: scale(1.08);
-  box-shadow: 0 6px 24px var(--accent-glow);
+  transform: scale(1.06);
+  box-shadow: 0 6px 28px rgba(245,166,35,0.45);
+}
+
+/* Active left accent line - matches the vertical golden bar in reference */
+.activeAccent {
+  display: none; /* Handled per-item */
 }
 
 .navList {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
   flex: 1;
   align-items: center;
+  padding-top: 4px;
 }
 
 .navItem {
   position: relative;
-  width: 44px; height: 44px;
+  width: 46px; height: 46px;
   background: transparent;
   border: none;
   border-radius: 12px;
-  cursor: pointer;
+  cursor: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
   color: var(--navbar-icon);
-  transition: all 0.25s ease;
-  border: 1px solid transparent;
+  transition: all 0.2s ease;
 }
 
 .navItem:hover {
-  background: var(--accent-glow);
+  background: rgba(245, 166, 35, 0.1);
   color: var(--accent-primary);
-  border-color: var(--border-subtle);
 }
 
+/* Active state - left golden border + icon highlight (from reference) */
 .navItem.active {
-  background: var(--accent-glow);
-  color: var(--navbar-icon-active);
+  background: rgba(245, 166, 35, 0.12);
+  color: var(--accent-primary);
+  border-left: 3px solid var(--accent-primary);
+  border-radius: 0 12px 12px 0;
+  width: 46px;
+}
+
+/* Position the whole navbar item wrapper for the left border effect */
+.navList li {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.navList li:has(.active) {
   border-left: 3px solid var(--accent-primary);
 }
 
-.navIcon {
-  font-size: 1.1rem;
-  transition: transform 0.2s ease;
-}
-
-.navItem:hover .navIcon {
-  transform: scale(1.2);
-}
-
+/* Tooltip */
 .navTooltip {
   position: absolute;
   left: 58px;
   background: var(--bg-card);
   color: var(--text-primary);
-  padding: 6px 12px;
+  padding: 6px 14px;
   border-radius: 8px;
   font-size: 0.75rem;
   font-weight: 600;
@@ -95,9 +107,11 @@
   box-shadow: var(--card-shadow);
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition: opacity 0.15s ease, transform 0.15s ease;
   transform: translateX(-6px);
   font-family: 'Space Grotesk', sans-serif;
+  letter-spacing: 0.3px;
+  z-index: 100;
 }
 
 .navTooltip::before {
@@ -114,40 +128,44 @@
   transform: translateX(0);
 }
 
+/* Theme toggle - sun/moon at bottom */
 .themeToggle {
   width: 44px; height: 44px;
   background: var(--bg-card);
   border: 1px solid var(--border-color);
-  border-radius: 12px;
-  cursor: pointer;
+  border-radius: 50%;
+  cursor: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
   color: var(--text-secondary);
   transition: all 0.25s ease;
-  margin-top: auto;
+  margin-top: 8px;
+  flex-shrink: 0;
 }
 
 .themeToggle:hover {
-  background: var(--accent-glow);
+  background: rgba(245,166,35,0.1);
   color: var(--accent-primary);
-  border-color: var(--accent-primary);
-  transform: rotate(15deg);
+  border-color: rgba(245,166,35,0.3);
+  transform: rotate(20deg);
 }
 
+/* Mobile bottom bar */
 @media (max-width: 768px) {
   .navbar {
     top: auto; bottom: 0; left: 0; right: 0;
-    width: 100%; height: 70px;
+    width: 100%; height: 64px;
     flex-direction: row;
-    padding: 0 20px;
+    padding: 0 16px;
     border-right: none;
     border-top: 1px solid var(--sidebar-border);
   }
-
-  .logo { margin-bottom: 0; margin-right: 16px; }
-  .navList { flex-direction: row; gap: 4px; }
-  .themeToggle { margin-top: 0; margin-left: auto; }
+  .logo { margin-bottom: 0; margin-right: 8px; width: 36px; height: 36px; font-size: 1.1rem; }
+  .navList { flex-direction: row; gap: 2px; flex: 1; justify-content: center; }
+  .navList li { width: auto; }
+  .navItem { width: 40px; height: 40px; }
+  .navItem.active { border-left: none; border-bottom: 3px solid var(--accent-primary); border-radius: 12px 12px 0 0; }
   .navTooltip { display: none; }
+  .themeToggle { margin-top: 0; margin-left: 8px; width: 36px; height: 36px; }
 }

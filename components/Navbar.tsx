@@ -2,29 +2,28 @@
 
 import { useEffect, useState } from 'react';
 import styles from './Navbar.module.css';
+import { Home, User, Briefcase, Code2, Sparkles, Mail, Box } from 'lucide-react';
 
 const navItems = [
-  { id: 'home', icon: '⌂', label: 'Home' },
-  { id: 'about', icon: '◉', label: 'About' },
-  { id: 'skills', icon: '◈', label: 'Skills' },
-  { id: 'experience', icon: '◫', label: 'Experience' },
-  { id: 'hobbies', icon: '✦', label: 'Hobbies' },
-  { id: 'contact', icon: '✉', label: 'Contact' },
+  { id: 'home',       Icon: Home,      label: 'Home' },
+  { id: 'about',      Icon: User,      label: 'About' },
+  { id: 'experience', Icon: Briefcase, label: 'Experience' },
+  { id: 'skills',     Icon: Code2,     label: 'Skills' },
+  { id: 'hobbies',    Icon: Sparkles,  label: 'Hobbies' },
+  { id: 'contact',    Icon: Mail,      label: 'Contact' },
 ];
 
 export default function Navbar() {
   const [active, setActive] = useState('home');
-  const [isDark, setIsDark] = useState(false);
+  const [isLight, setIsLight] = useState(false);
 
   useEffect(() => {
-    // Init theme
     const saved = localStorage.getItem('theme');
-    if (saved === 'dark') {
-      document.documentElement.setAttribute('data-theme', 'dark');
-      setIsDark(true);
+    if (saved === 'light') {
+      document.documentElement.setAttribute('data-theme', 'light');
+      setIsLight(true);
     }
 
-    // Scroll spy
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -43,27 +42,29 @@ export default function Navbar() {
   }, []);
 
   const toggleTheme = () => {
-    const next = !isDark;
-    setIsDark(next);
-    document.documentElement.setAttribute('data-theme', next ? 'dark' : '');
-    localStorage.setItem('theme', next ? 'dark' : 'light');
+    const next = !isLight;
+    setIsLight(next);
+    document.documentElement.setAttribute('data-theme', next ? 'light' : '');
+    localStorage.setItem('theme', next ? 'light' : 'dark');
   };
 
   const scrollTo = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
     <nav className={styles.navbar} aria-label="Main navigation">
       {/* Logo */}
-      <div className={styles.logo} onClick={() => scrollTo('home')}>
+      <button className={styles.logo} onClick={() => scrollTo('home')} id="nav-logo" aria-label="Go to top">
         <span>A</span>
-      </div>
+      </button>
+
+      {/* Active accent line */}
+      <div className={styles.activeAccent} />
 
       {/* Nav Items */}
       <ul className={styles.navList}>
-        {navItems.map(({ id, icon, label }) => (
+        {navItems.map(({ id, Icon, label }) => (
           <li key={id}>
             <button
               id={`nav-${id}`}
@@ -72,7 +73,7 @@ export default function Navbar() {
               aria-label={label}
               title={label}
             >
-              <span className={styles.navIcon}>{icon}</span>
+              <Icon size={20} strokeWidth={1.8} />
               <span className={styles.navTooltip}>{label}</span>
             </button>
           </li>
@@ -84,10 +85,18 @@ export default function Navbar() {
         id="theme-toggle"
         className={styles.themeToggle}
         onClick={toggleTheme}
-        aria-label="Toggle dark/light mode"
-        title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+        aria-label="Toggle theme"
+        title={isLight ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
       >
-        <span>{isDark ? '☀' : '☾'}</span>
+        {isLight ? (
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+          </svg>
+        ) : (
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        )}
       </button>
     </nav>
   );
