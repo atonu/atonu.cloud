@@ -5,9 +5,11 @@ import { useRef } from 'react';
 import styles from './About.module.css';
 
 // Dynamic import for Three.js (reuse the 3D scene from Hero)
-const ThreeScene = dynamic(() => import('./AboutThreeScene'), { ssr: false, loading: () => (
-  <div style={{ width: '100%', height: '100%', background: 'var(--bg-card)', borderRadius: 24 }} />
-) });
+const ThreeScene = dynamic(() => import('./AboutThreeScene'), {
+  ssr: false, loading: () => (
+    <div style={{ width: '100%', height: '100%', background: 'var(--bg-card)', borderRadius: 24 }} />
+  )
+});
 
 const highlights = [
   { icon: '🚀', text: 'Led migration of high-volume telemetry to cloud storage, significantly reducing costs' },
@@ -26,9 +28,8 @@ export default function About() {
         <div className={styles.sceneCol}>
           <div className={styles.sceneFrame}>
             <ThreeScene />
-            
+
             <div className={styles.avatarBadge}>
-              <span>🇧🇩</span>
               <span>Dhaka, Bangladesh</span>
             </div>
 

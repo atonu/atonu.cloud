@@ -2,7 +2,8 @@
   display: grid;
   grid-template-columns: 1fr 1.2fr;
   gap: 72px;
-  align-items: start; /* Allow sticky children to work */
+  align-items: start;
+  /* Allow sticky children to work */
 }
 
 /* 3D Scene column */
@@ -20,13 +21,13 @@
   border-radius: 24px;
   overflow: hidden;
   border: 1px solid var(--border-color);
-  background: radial-gradient(ellipse at center, rgba(79,110,247,0.08) 0%, var(--bg-card) 70%);
+  background: radial-gradient(ellipse at center, rgba(79, 110, 247, 0.08) 0%, var(--bg-card) 70%);
   box-shadow: var(--card-shadow);
 }
 
 .avatarBadge {
   position: absolute;
-  bottom: -16px;
+  bottom: 6px;
   left: 20px;
   background: var(--bg-card);
   border: 1px solid var(--border-color);
@@ -44,7 +45,7 @@
 
 .experienceBadge {
   position: absolute;
-  top: -16px;
+  top: -10px;
   right: 20px;
   background: var(--accent-primary);
   border-radius: 16px;
@@ -66,7 +67,7 @@
 
 .expText {
   font-size: 0.62rem;
-  color: rgba(10,10,15,0.8);
+  color: rgba(10, 10, 15, 0.8);
   font-weight: 700;
   white-space: nowrap;
 }
@@ -75,7 +76,8 @@
 .textCol {
   position: sticky;
   top: 100px;
-  padding-top: 10px; /* Optional visual tweak */
+  padding-top: 10px;
+  /* Optional visual tweak */
 }
 
 .bio {
@@ -97,7 +99,7 @@
   align-items: flex-start;
   gap: 14px;
   padding: 13px 16px;
-  background: rgba(255,255,255,0.03);
+  background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--border-subtle);
   border-radius: 12px;
   transition: all 0.25s ease;
@@ -105,7 +107,7 @@
 }
 
 .highlight:hover {
-  border-color: rgba(245,166,35,0.3);
+  border-color: rgba(245, 166, 35, 0.3);
   background: var(--accent-glow);
   transform: translateX(6px);
 }
@@ -143,7 +145,7 @@
 
 .contactItem:hover {
   color: var(--accent-primary);
-  border-bottom-color: rgba(245,166,35,0.3);
+  border-bottom-color: rgba(245, 166, 35, 0.3);
 }
 
 @media (max-width: 1024px) {
@@ -151,6 +153,16 @@
     grid-template-columns: 1fr;
     gap: 48px;
   }
-  .sceneFrame { height: 340px; max-width: 480px; margin: 0 auto; }
-  .textCol { position: relative; top: 0; order: -1; }
+
+  .sceneFrame {
+    height: 340px;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .textCol {
+    position: relative;
+    top: 0;
+    order: -1;
+  }
 }
