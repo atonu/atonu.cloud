@@ -7,6 +7,7 @@ import TechTicker from '@/components/TechTicker';
 import About from '@/components/About';
 import Skills from '@/components/Skills';
 import WorkExperience from '@/components/WorkExperience';
+import Testimonials from '@/components/Testimonials';
 import HobbiesCarousel from '@/components/HobbiesCarousel';
 import EducationAccomplishments from '@/components/EducationAccomplishments';
 import Contact from '@/components/Contact';
@@ -52,6 +53,8 @@ export default function Home() {
             <Skills />
             <div className="divider" />
             <WorkExperience />
+            <div className="divider" />
+            <Testimonials />
             <div className="divider" />
             <HobbiesCarousel />
             <div className="divider" />
