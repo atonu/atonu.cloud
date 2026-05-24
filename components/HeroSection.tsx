@@ -1,9 +1,35 @@
 'use client';
 
 import Image from 'next/image';
+import { useEffect } from 'react';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import styles from './Hero.module.css';
 
 export default function HeroSection() {
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const springConfig = { stiffness: 150, damping: 30, mass: 0.5 };
+  const smoothX = useSpring(mouseX, springConfig);
+  const smoothY = useSpring(mouseY, springConfig);
+
+  const rotateX = useTransform(smoothY, [-0.5, 0.5], ["1deg", "-1deg"]);
+  const rotateY = useTransform(smoothX, [-0.5, 0.5], ["-1deg", "1deg"]);
+  const skewX = useTransform(smoothX, [-0.5, 0.5], ["-.5deg", ".5deg"]);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const { innerWidth, innerHeight } = window;
+      const xPct = (e.clientX / innerWidth) - 0.5;
+      const yPct = (e.clientY / innerHeight) - 0.5;
+      mouseX.set(xPct);
+      mouseY.set(yPct);
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, [mouseX, mouseY]);
+
   return (
     <section id="home" className={styles.hero}>
       {/* Sticky hero background */}
@@ -69,15 +95,27 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Right: Static Image */}
-        <div className={styles.heroImageContainer}>
-          <Image
-            src="/avatars/hero-main.png"
-            alt="Atonu Ahmed avatar"
-            fill
-            className={styles.heroStaticImage}
-            priority
-          />
+        {/* Right: Static Image with Tilt Effect */}
+        <div className={styles.heroImageContainer} style={{ perspective: '1000px' }}>
+          <motion.div
+            style={{
+              width: '100%',
+              height: '100%',
+              position: 'absolute',
+              rotateX,
+              rotateY,
+              skewX,
+              transformStyle: 'preserve-3d'
+            }}
+          >
+            <Image
+              src="/avatars/hero-main.png"
+              alt="Atonu Ahmed avatar"
+              fill
+              className={styles.heroStaticImage}
+              priority
+            />
+          </motion.div>
         </div>
       </div>
     </section>

@@ -166,3 +166,58 @@
     order: -1;
   }
 }
+
+@media (max-width: 640px) {
+  .sceneFrame {
+    height: 300px;
+  }
+
+  .avatarBadge {
+    left: 10px;
+    bottom: 10px;
+    padding: 8px 12px;
+    font-size: 0.75rem;
+  }
+
+  .experienceBadge {
+    right: 10px;
+    top: -12px;
+    padding: 8px 14px;
+  }
+
+  .expNum {
+    font-size: 1.3rem;
+  }
+
+  .expText {
+    font-size: 0.58rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sceneFrame {
+    height: 250px;
+    border-radius: 16px;
+  }
+
+  .avatarBadge {
+    left: 5px;
+    bottom: 5px;
+    padding: 6px 10px;
+    font-size: 0.65rem;
+  }
+
+  .experienceBadge {
+    right: 5px;
+    top: -10px;
+    padding: 6px 10px;
+  }
+
+  .expNum {
+    font-size: 1.1rem;
+  }
+
+  .expText {
+    font-size: 0.5rem;
+  }
+}

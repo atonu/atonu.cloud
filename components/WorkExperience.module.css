@@ -3,8 +3,10 @@
   position: relative;
   z-index: 10;
   background: var(--bg-primary);
-  margin-top: -100vh; /* Slides up and covers the sticky skills section */
-  box-shadow: 0 -20px 50px rgba(0,0,0,0.5); /* Adds a layered card shadow */
+  margin-top: -100vh;
+  /* Slides up and covers the sticky skills section */
+  box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.5);
+  /* Adds a layered card shadow */
 }
 
 .expLayout {
@@ -51,7 +53,7 @@
 }
 
 .expStat {
-  background: rgba(255,255,255,0.04);
+  background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--border-color);
   border-radius: 12px;
   padding: 14px 18px;
@@ -61,7 +63,7 @@
 }
 
 .expStat:hover {
-  border-color: rgba(245,166,35,0.3);
+  border-color: rgba(245, 166, 35, 0.3);
   background: var(--accent-glow);
 }
 
@@ -87,17 +89,31 @@
   position: relative;
   display: flex;
   justify-content: center;
+  margin-top: 16px;
+}
+
+@keyframes breathing {
+
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-12px) scale(1.03);
+  }
 }
 
 .supermanImg {
   object-fit: contain;
-  filter: drop-shadow(0 8px 32px rgba(79,110,247,0.4));
-  animation: float 3.5s ease-in-out infinite;
+  filter: drop-shadow(0 8px 32px rgba(79, 110, 247, 0.4));
+  animation: breathing 4s ease-in-out infinite;
 }
 
 .supermanBadge {
   position: absolute;
-  bottom: 0; right: 0;
+  bottom: 0;
+  right: 0;
   background: var(--accent-primary);
   color: #0a0a0f;
   border-radius: 20px;
@@ -130,16 +146,18 @@
   margin-bottom: 6px;
 }
 
-.expFlag { font-size: 1rem; }
+.expFlag {
+  font-size: 1rem;
+}
 
 .currentBadge {
   font-size: 0.7rem;
   font-weight: 700;
   color: #22c55e;
-  background: rgba(34,197,94,0.1);
+  background: rgba(34, 197, 94, 0.1);
   padding: 2px 10px;
   border-radius: 20px;
-  border: 1px solid rgba(34,197,94,0.25);
+  border: 1px solid rgba(34, 197, 94, 0.25);
 }
 
 .expRole {
@@ -156,7 +174,10 @@
   color: var(--text-secondary);
 }
 
-.expLocation { color: var(--text-muted); font-weight: 400; }
+.expLocation {
+  color: var(--text-muted);
+  font-weight: 400;
+}
 
 .expPeriod {
   font-size: 0.72rem;
@@ -201,6 +222,7 @@
     padding: 80px 40px;
     gap: 40px;
   }
+
   .stickySide {
     position: relative;
     top: 0;
@@ -208,6 +230,11 @@
 }
 
 @media (max-width: 640px) {
-  .expLayout { padding: 60px 20px; }
-  .expCard { padding: 18px 16px; }
+  .expLayout {
+    padding: 60px 20px;
+  }
+
+  .expCard {
+    padding: 18px 16px;
+  }
 }

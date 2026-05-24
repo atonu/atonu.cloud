@@ -83,6 +83,8 @@ a.contactLinkValue:hover { color: var(--accent-primary); }
   object-fit: contain;
   animation: float 4s ease-in-out infinite;
   filter: drop-shadow(0 4px 16px rgba(0,0,0,0.15));
+  width: 360px;
+  height: 400px;
 }
 
 .contactSpeech {
@@ -172,4 +174,5 @@ a.contactLinkValue:hover { color: var(--accent-primary); }
 
 @media (max-width: 1024px) {
   .contactLayout { grid-template-columns: 1fr; gap: 48px; }
+  .contactAvatarImg { width: 180px; height: 200px; }
 }

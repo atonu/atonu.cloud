@@ -25,16 +25,6 @@ export default function Footer() {
             <a key={link.label} href={link.href} className={styles.link}>{link.label}</a>
           ))}
         </div>
-
-        <div className={styles.avatarFooter}>
-          <Image
-            src="/avatars/about.png"
-            alt="Atonu Ahmed"
-            width={80}
-            height={90}
-            className={styles.footerAvatar}
-          />
-        </div>
       </div>
 
       <div className={styles.bottom}>

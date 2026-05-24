@@ -70,8 +70,8 @@ export default function Contact() {
               <Image
                 src="/avatars/about.png"
                 alt="Atonu Ahmed"
-                width={180}
-                height={200}
+                width={360}
+                height={400}
                 className={styles.contactAvatarImg}
               />
               <div className={styles.contactSpeech}>
