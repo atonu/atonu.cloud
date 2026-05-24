@@ -17,15 +17,13 @@ export default function CustomCursor() {
     const animate = () => {
       // Dot follows instantly
       if (dotRef.current) {
-        dotRef.current.style.left = `${pos.current.x}px`;
-        dotRef.current.style.top = `${pos.current.y}px`;
+        dotRef.current.style.transform = `translate3d(calc(${pos.current.x}px - 50%), calc(${pos.current.y}px - 50%), 0)`;
       }
       // Ring follows with lerp (smooth lag)
       ringPos.current.x += (pos.current.x - ringPos.current.x) * 0.12;
       ringPos.current.y += (pos.current.y - ringPos.current.y) * 0.12;
       if (ringRef.current) {
-        ringRef.current.style.left = `${ringPos.current.x}px`;
-        ringRef.current.style.top = `${ringPos.current.y}px`;
+        ringRef.current.style.transform = `translate3d(calc(${ringPos.current.x}px - 50%), calc(${ringPos.current.y}px - 50%), 0)`;
       }
       rafRef.current = requestAnimationFrame(animate);
     };

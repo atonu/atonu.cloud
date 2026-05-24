@@ -48,24 +48,30 @@ export default function ParallaxBackground() {
         const px = p.x + mx * 18 * ls;
         const py = p.y + my * 12 * ls;
 
+        // Draw soft glow first (very fast)
+        ctx.beginPath();
+        ctx.arc(px, py, p.r * 2.5, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(245, 166, 35, ${p.opacity * 0.15})`;
+        ctx.fill();
+
+        // Draw core
         ctx.beginPath();
         ctx.arc(px, py, p.r, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(245, 166, 35, ${p.opacity * ls * 0.7})`;
-        ctx.shadowBlur = p.r * 3;
-        ctx.shadowColor = `rgba(245, 166, 35, ${p.opacity * 0.4})`;
         ctx.fill();
 
         // Also draw blue accent particles for variety
         if (p.layer === 0) {
           ctx.beginPath();
+          ctx.arc(px + 3, py + 3, p.r * 1.5, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(79, 110, 247, ${p.opacity * 0.1})`;
+          ctx.fill();
+
+          ctx.beginPath();
           ctx.arc(px + 3, py + 3, p.r * 0.6, 0, Math.PI * 2);
           ctx.fillStyle = `rgba(79, 110, 247, ${p.opacity * 0.4})`;
-          ctx.shadowBlur = p.r * 2;
-          ctx.shadowColor = `rgba(79, 110, 247, 0.3)`;
           ctx.fill();
         }
-
-        ctx.shadowBlur = 0;
 
         // Drift upward slowly
         p.y -= p.speed;
