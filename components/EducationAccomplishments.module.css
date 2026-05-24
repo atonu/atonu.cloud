@@ -68,6 +68,8 @@
   object-fit: contain;
   filter: drop-shadow(0 4px 16px rgba(0,0,0,0.15));
   animation: float 4s ease-in-out infinite;
+  width: 280px;
+  height: 320px;
 }
 
 .peakSpeech {
@@ -121,4 +123,5 @@
 
 @media (max-width: 1024px) {
   .grid { grid-template-columns: 1fr; gap: 48px; }
+  .peakAvatarImg { width: 140px; height: 160px; }
 }

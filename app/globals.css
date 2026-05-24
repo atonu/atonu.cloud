@@ -190,7 +190,8 @@ img {
 
 .main-content {
   flex: 1;
-  padding-left: 80px;
+  padding-left: 0;
+  padding-right: 80px;
   position: relative;
   overflow-x: clip;
   width: 100%;
@@ -198,7 +199,7 @@ img {
 
 @media (max-width: 768px) {
   .main-content {
-    padding-left: 0;
+    padding-right: 0;
     padding-bottom: 70px;
   }
 }

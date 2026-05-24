@@ -214,23 +214,7 @@
 .heroStaticImage {
   object-fit: contain;
   object-position: center;
-  padding: 100px;
-}
-
-/* Avatar overlay on canvas */
-.avatarOverlay {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-45%);
-  pointer-events: none;
-  z-index: 10;
-}
-
-.avatarImg {
-  object-fit: contain;
-  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.3));
-  animation: float-slow 4s ease-in-out infinite;
+  padding: 150px;
 }
 
 /* ── RESPONSIVE ── */

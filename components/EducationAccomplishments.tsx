@@ -55,8 +55,8 @@ export default function EducationAccomplishments() {
               <Image
                 src="/avatars/graduation.png"
                 alt="Atonu peeking in"
-                width={140}
-                height={160}
+                width={280}
+                height={320}
                 className={styles.peakAvatarImg}
               />
               <div className={styles.peakSpeech}>
