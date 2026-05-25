@@ -8,7 +8,9 @@ import styles from './About.module.css';
 // Dynamic import for Three.js (reuse the 3D scene from Hero)
 const ThreeScene = dynamic(() => import('./AboutThreeScene'), {
   ssr: false, loading: () => (
-    <div style={{ width: '100%', height: '100%', background: 'var(--bg-card)', borderRadius: 24 }} />
+    <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--bg-card)', borderRadius: 24 }}>
+      <div className={styles.spinner}></div>
+    </div>
   )
 });
 

@@ -172,6 +172,12 @@ img {
   background: rgba(245, 166, 35, 0.05);
 }
 
+@media (max-width: 768px) {
+  .cursor-dot, .cursor-ring, .cursor-gradient {
+    display: none !important;
+  }
+}
+
 /* ===== SCROLLBAR ===== */
 ::-webkit-scrollbar {
   width: 4px;

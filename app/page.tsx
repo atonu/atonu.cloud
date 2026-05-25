@@ -45,7 +45,7 @@ export default function Home() {
 
             <div className="divider" />
 
-            <LazySection id="skills" minHeight="100vh">
+            <LazySection id="skills" minHeight="200vh">
               <Skills />
             </LazySection>
 

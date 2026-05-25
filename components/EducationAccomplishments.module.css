@@ -60,17 +60,20 @@
 .peakAvatar {
   display: flex;
   align-items: flex-end;
+  justify-content: center;
   gap: 16px;
   margin-top: 32px;
-  padding-left: 20px;
+  padding-left: 0;
+  width: 100%;
 }
 
 .peakAvatarImg {
   object-fit: contain;
   filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.15));
   animation: float 4s ease-in-out infinite;
-  width: 650px;
-  height: 500px;
+  width: 800px;
+  height: 650px;
+  max-width: 100%;
 }
 
 .peakSpeech {
@@ -130,7 +133,8 @@
   }
 
   .peakAvatarImg {
-    width: 140px;
-    height: 160px;
+    width: 80%;
+    height: auto;
+    max-width: 500px;
   }
 }
