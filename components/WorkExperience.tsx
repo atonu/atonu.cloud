@@ -145,7 +145,7 @@ export default function WorkExperience() {
                     <div>
                       <div className={styles.expMeta}>
                         <span className={styles.expFlag}>{exp.flag}</span>
-                        {exp.current && <span className={styles.currentBadge}>● Current</span>}
+                        {/* {exp.current && <span className={styles.currentBadge}>● Current</span>} */}
                       </div>
                       <h3 className={styles.expRole}>{exp.role}</h3>
                       <div className={styles.expCompany}>
