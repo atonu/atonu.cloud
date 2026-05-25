@@ -4,15 +4,14 @@ import Image from 'next/image';
 import styles from './HobbiesCarousel.module.css';
 
 const hobbies = [
-  { id: 'surfing',    title: 'Travelling',         subtitle: 'Riding waves of adventure',        img: '/avatars/hobby-surfing.png',    emoji: '🏄', color: '#06b6d4' },
-  { id: 'safari',     title: 'Travelling',         subtitle: 'Safari life is wild (literally)',  img: '/avatars/hobby-safari.png',     emoji: '🦁', color: '#f59e0b' },
-  { id: 'vlogging',   title: 'Vlogging',           subtitle: 'Capturing life, one frame at a time', img: '/avatars/hobby-vlogging.png',emoji: '🎥', color: '#ef4444' },
-  { id: 'editing',    title: 'Video Editing',      subtitle: 'Telling stories through the edit',img: '/avatars/hobby-editing.png',    emoji: '🎬', color: '#8b5cf6' },
-  { id: 'cycling',    title: 'Cycling',            subtitle: 'Full speed, fresh air, freedom',  img: '/avatars/hobby-cycling.png',    emoji: '🚴', color: '#22c55e' },
-  { id: 'driving',    title: 'Driving',            subtitle: 'Head out, music up, road on',     img: '/avatars/hobby-driving.png',    emoji: '🚗', color: '#f97316' },
-  { id: 'connecting', title: 'Connecting',         subtitle: 'Building bridges between people', img: '/avatars/hobby-connecting.png', emoji: '🤝', color: '#ec4899' },
-  { id: 'mechanic',   title: 'Repairing Machines', subtitle: "If it's broken, I'll fix it",    img: '/avatars/hobby-mechanic.png',   emoji: '🔧', color: '#64748b' },
-  { id: 'tea',        title: 'Preparing Tea',      subtitle: 'The sacred ritual of the perfect brew', img: '/avatars/hobby-tea.png',  emoji: '☕', color: '#a16207' },
+  { id: 'safari', title: 'Travelling', subtitle: 'Safari life is wild (literally)', img: '/avatars/hobby-safari.png', emoji: '🦁', color: '#f59e0b' },
+  { id: 'vlogging', title: 'Vlogging', subtitle: 'Capturing life, one frame at a time', img: '/avatars/hobby-vlogging.png', emoji: '🎥', color: '#ef4444' },
+  { id: 'editing', title: 'Video Editing', subtitle: 'Telling stories through the edit', img: '/avatars/hobby-editing.png', emoji: '🎬', color: '#8b5cf6' },
+  { id: 'cycling', title: 'Cycling', subtitle: 'Full speed, fresh air, freedom', img: '/avatars/hobby-cycling.png', emoji: '🚴', color: '#22c55e' },
+  { id: 'driving', title: 'Driving', subtitle: 'Head out, music up, road on', img: '/avatars/hobby-driving.png', emoji: '🚗', color: '#f97316' },
+  { id: 'connecting', title: 'Connecting', subtitle: 'Building bridges between people', img: '/avatars/hobby-connecting.png', emoji: '🤝', color: '#ec4899' },
+  { id: 'mechanic', title: 'Repairing Machines', subtitle: "If it's broken, I'll fix it", img: '/avatars/hobby-mechanic.png', emoji: '🔧', color: '#64748b' },
+  { id: 'tea', title: 'Preparing Tea', subtitle: 'The sacred ritual of the perfect brew', img: '/avatars/hobby-tea.png', emoji: '☕', color: '#a16207' },
 ];
 
 // Duplicate for infinite loop

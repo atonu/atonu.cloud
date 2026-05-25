@@ -104,8 +104,8 @@ a.contactLinkValue:hover {
   object-fit: contain;
   animation: float 4s ease-in-out infinite;
   filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.15));
-  width: 360px;
-  height: 400px;
+  width: 460px;
+  height: 460px;
 }
 
 .contactSpeech {
@@ -113,6 +113,7 @@ a.contactLinkValue:hover {
   color: white;
   border-radius: 4px 16px 16px 16px;
   padding: 12px 16px;
+  margin: 12px 0;
   font-size: 0.82rem;
   font-weight: 600;
   max-width: 200px;
