@@ -4,7 +4,17 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import styles from './WorkExperience.module.css';
 
-const experiences = [
+type Experience = {
+  role: string;
+  company: string;
+  period: string;
+  flag: string;
+  bullets: string[];
+  location?: string;
+  current?: boolean;
+};
+
+const experiences: Experience[] = [
   {
     role: 'Senior Software Engineer',
     company: 'SELISE Group AG',

@@ -25,6 +25,7 @@ export default function Navbar() {
     const saved = localStorage.getItem('theme');
     if (saved === 'light') {
       document.documentElement.setAttribute('data-theme', 'light');
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsLight(true);
     }
 

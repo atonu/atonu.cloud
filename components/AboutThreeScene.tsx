@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useEffect } from 'react';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { Canvas, useFrame } from '@react-three/fiber';
 import { PerspectiveCamera, Float, RoundedBox, Environment, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 
@@ -298,7 +298,6 @@ import { useInView } from 'framer-motion';
 
 function SceneContent() {
   const mouseRef = useRef({ x: 0, y: 0 });
-  const { camera } = useThree();
 
   useEffect(() => {
     const handleMouse = (e: MouseEvent) => {
@@ -311,13 +310,13 @@ function SceneContent() {
     return () => window.removeEventListener('mousemove', handleMouse);
   }, []);
 
-  useFrame(() => {
+  useFrame((state) => {
     if (mouseRef.current) {
       const targetX = mouseRef.current.x * 0.4;
       const targetY = mouseRef.current.y * 0.25;
-      camera.position.x += (targetX - camera.position.x + 4) * 0.03 - 4 * 0.03;
-      camera.position.y += (targetY - camera.position.y + 3.5) * 0.03 - 3.5 * 0.03;
-      camera.lookAt(0, 0, 0);
+      state.camera.position.x += (targetX - state.camera.position.x + 4) * 0.03 - 4 * 0.03;
+      state.camera.position.y += (targetY - state.camera.position.y + 3.5) * 0.03 - 3.5 * 0.03;
+      state.camera.lookAt(0, 0, 0);
     }
   });
 

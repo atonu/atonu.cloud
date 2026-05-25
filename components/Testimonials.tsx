@@ -29,7 +29,7 @@ function Card({
   range,
   targetScale
 }: {
-  testimonial: any;
+  testimonial: { name: string; role: string; company?: string; text: string; image: string; date?: string; };
   i: number;
   progress: MotionValue<number>;
   range: number[];

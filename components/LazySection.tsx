@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState, useEffect, ReactNode, ComponentType } from 'react';
+import { useRef, useState, useEffect, ReactNode } from 'react';
 import styles from './LazySection.module.css';
 
 interface LazySectionProps {
