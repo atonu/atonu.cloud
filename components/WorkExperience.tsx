@@ -93,7 +93,7 @@ export default function WorkExperience() {
             {/* Stats */}
             <div className={styles.expStats}>
               {[
-                { num: '6', label: 'Companies' },
+                { num: '4', label: 'Companies' },
                 { num: '4', label: 'Countries' },
                 { num: '7+', label: 'Years' },
               ].map((s) => (
