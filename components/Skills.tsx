@@ -70,13 +70,8 @@ function SkillBar({ name, level, color }: { name: string; level: number; color: 
 
 export default function Skills() {
   return (
-    <section id="skills" className={styles.skillsSection}>
-      {/* Scroll-driven striped background (argyleink style) */}
-      <div className={styles.scrollBg} aria-hidden="true">
-        {Array.from({ length: 12 }).map((_, i) => (
-          <div key={i} className={styles.scrollStripe} style={{ animationDelay: `${i * -0.4}s` }} />
-        ))}
-      </div>
+    <section className={styles.skillsSection}>
+
 
       <FlyingSkillsGrid>
         <div className={styles.skillsInner}>

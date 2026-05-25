@@ -110,8 +110,8 @@ export default function WorkExperience() {
               <Image
                 src="/avatars/superman.png"
                 alt="Atonu as Superman"
-                width={200}
-                height={240}
+                width={350}
+                height={350}
                 className={styles.supermanImg}
               />
               <div className={styles.supermanBadge}>⚡ Super Engineer!</div>

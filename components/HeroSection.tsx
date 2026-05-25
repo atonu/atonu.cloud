@@ -31,7 +31,7 @@ export default function HeroSection() {
   }, [mouseX, mouseY]);
 
   return (
-    <section id="home" className={styles.hero}>
+    <section className={styles.hero}>
       {/* Sticky hero background */}
       <div className={styles.heroSticky}>
         {/* Download CV button top right (furthest to right) */}

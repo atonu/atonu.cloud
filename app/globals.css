@@ -138,12 +138,13 @@ img {
   left: 0;
   width: 8px;
   height: 8px;
+  margin-left: -4px;
+  margin-top: -4px;
   background: white;
   border-radius: 50%;
   will-change: transform;
   pointer-events: none;
   z-index: 99999;
-  transition: width 0.15s, height 0.15s, background 0.15s;
 }
 
 .cursor-ring {
@@ -152,17 +153,21 @@ img {
   left: 0;
   width: 40px;
   height: 40px;
+  margin-left: -20px;
+  margin-top: -20px;
   border: 2px solid rgba(245, 166, 35, 0.7);
   border-radius: 50%;
   will-change: transform;
   pointer-events: none;
   z-index: 99998;
-  transition: width 0.3s, height 0.3s, border-color 0.3s;
+  transition: width 0.3s, height 0.3s, border-color 0.3s, margin 0.3s;
 }
 
 .cursor-ring.hovered {
   width: 60px;
   height: 60px;
+  margin-left: -30px;
+  margin-top: -30px;
   border-color: var(--accent-primary);
   background: rgba(245, 166, 35, 0.05);
 }
@@ -213,9 +218,9 @@ img {
   height: 100%;
   pointer-events: none;
   z-index: 0;
+  will-change: --mouse-x, --mouse-y;
   background:
-    radial-gradient(3500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--cursor-gradient-1), transparent 60%),
-    radial-gradient(2500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--cursor-gradient-2), transparent 70%);
+    radial-gradient(2000px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--cursor-gradient-1), transparent 60%);
 }
 
 /* ===== SECTION BASE ===== */
@@ -223,6 +228,8 @@ img {
   position: relative;
   padding: 100px 60px;
   z-index: 1;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 800px;
 }
 
 .section-inner {
@@ -315,7 +322,6 @@ img {
   font-size: 0.95rem;
   cursor: none;
   transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
 }
 
 .btn-secondary:hover {
@@ -596,7 +602,6 @@ img {
   color: var(--text-secondary);
   white-space: nowrap;
   flex-shrink: 0;
-  backdrop-filter: blur(10px);
   transition: all 0.25s ease;
 }
 

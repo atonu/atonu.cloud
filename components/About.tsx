@@ -1,6 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 import { useRef } from 'react';
 import styles from './About.module.css';
 
@@ -22,10 +23,30 @@ export default function About() {
   const ref = useRef<HTMLElement>(null);
 
   return (
-    <section id="about" className="section" ref={ref}>
+    <section className="section" ref={ref}>
       <div className={`section-inner ${styles.about}`}>
         {/* LEFT: 3D Workstation and details (Scrolls) */}
         <div className={styles.sceneCol}>
+
+          <div className={styles.aboutImageWrapper}>
+            <Image
+              src="/avatars/about.png"
+              alt="Atonu Ahmed"
+              width={400}
+              height={350}
+              className={styles.aboutAvatarImg}
+            />
+          </div>
+
+          <div className={styles.highlights}>
+            {highlights.map((h, i) => (
+              <div key={i} className={styles.highlight} data-hover>
+                <span className={styles.highlightIcon}>{h.icon}</span>
+                <span className={styles.highlightText}>{h.text}</span>
+              </div>
+            ))}
+          </div>
+
           <div className={styles.sceneFrame}>
             <ThreeScene />
 
@@ -39,14 +60,7 @@ export default function About() {
             </div>
           </div>
 
-          <div className={styles.highlights}>
-            {highlights.map((h, i) => (
-              <div key={i} className={styles.highlight} data-hover>
-                <span className={styles.highlightIcon}>{h.icon}</span>
-                <span className={styles.highlightText}>{h.text}</span>
-              </div>
-            ))}
-          </div>
+
 
           <div className={styles.contactInfo}>
             {[

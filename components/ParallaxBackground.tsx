@@ -6,7 +6,7 @@ export default function ParallaxBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const frameRef = useRef<number | null>(null);
   const mouseRef = useRef({ x: 0, y: 0 });
-  const scrollRef = useRef(0);
+  const visibleRef = useRef(true);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -19,10 +19,10 @@ export default function ParallaxBackground() {
     canvas.width = W;
     canvas.height = H;
 
-    // Three layers of particles at different depths
+    // Reduced particle count for performance
     type Particle = { x: number; y: number; r: number; speed: number; opacity: number; layer: number };
     const particles: Particle[] = [];
-    const PARTICLE_COUNT = 180;
+    const PARTICLE_COUNT = 80; // Down from 180
 
     const randomParticle = (): Particle => ({
       x: Math.random() * W,
@@ -30,7 +30,7 @@ export default function ParallaxBackground() {
       r: Math.random() * 1.8 + 0.3,
       speed: Math.random() * 0.3 + 0.05,
       opacity: Math.random() * 0.6 + 0.2,
-      layer: Math.floor(Math.random() * 3), // 0=far, 1=mid, 2=near
+      layer: Math.floor(Math.random() * 3),
     });
 
     for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(randomParticle());
@@ -38,40 +38,27 @@ export default function ParallaxBackground() {
     const layerSpeed = [0.3, 0.6, 1.0];
 
     const draw = () => {
+      if (!visibleRef.current) {
+        frameRef.current = requestAnimationFrame(draw);
+        return; // Skip rendering when tab is hidden
+      }
+
       ctx.clearRect(0, 0, W, H);
 
       const mx = (mouseRef.current.x / W - 0.5) * 2;
       const my = (mouseRef.current.y / H - 0.5) * 2;
 
-      particles.forEach(p => {
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
         const ls = layerSpeed[p.layer];
         const px = p.x + mx * 18 * ls;
         const py = p.y + my * 12 * ls;
 
-        // Draw soft glow first (very fast)
-        ctx.beginPath();
-        ctx.arc(px, py, p.r * 2.5, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(245, 166, 35, ${p.opacity * 0.15})`;
-        ctx.fill();
-
-        // Draw core
+        // Single draw per particle (removed glow + blue accent = 3 fewer draws per particle)
         ctx.beginPath();
         ctx.arc(px, py, p.r, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(245, 166, 35, ${p.opacity * ls * 0.7})`;
         ctx.fill();
-
-        // Also draw blue accent particles for variety
-        if (p.layer === 0) {
-          ctx.beginPath();
-          ctx.arc(px + 3, py + 3, p.r * 1.5, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(79, 110, 247, ${p.opacity * 0.1})`;
-          ctx.fill();
-
-          ctx.beginPath();
-          ctx.arc(px + 3, py + 3, p.r * 0.6, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(79, 110, 247, ${p.opacity * 0.4})`;
-          ctx.fill();
-        }
 
         // Drift upward slowly
         p.y -= p.speed;
@@ -79,7 +66,7 @@ export default function ParallaxBackground() {
           p.y = H + 5;
           p.x = Math.random() * W;
         }
-      });
+      }
 
       frameRef.current = requestAnimationFrame(draw);
     };
@@ -95,13 +82,20 @@ export default function ParallaxBackground() {
       canvas.height = H;
     };
 
-    window.addEventListener('mousemove', onMouse);
+    // Pause when tab is hidden
+    const onVisibilityChange = () => {
+      visibleRef.current = !document.hidden;
+    };
+
+    window.addEventListener('mousemove', onMouse, { passive: true });
     window.addEventListener('resize', onResize);
+    document.addEventListener('visibilitychange', onVisibilityChange);
     frameRef.current = requestAnimationFrame(draw);
 
     return () => {
       window.removeEventListener('mousemove', onMouse);
       window.removeEventListener('resize', onResize);
+      document.removeEventListener('visibilitychange', onVisibilityChange);
       if (frameRef.current) cancelAnimationFrame(frameRef.current);
     };
   }, []);

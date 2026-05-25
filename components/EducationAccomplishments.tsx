@@ -55,13 +55,10 @@ export default function EducationAccomplishments() {
               <Image
                 src="/avatars/graduation.png"
                 alt="Atonu peeking in"
-                width={280}
-                height={320}
+                width={1080}
+                height={1200}
                 className={styles.peakAvatarImg}
               />
-              <div className={styles.peakSpeech}>
-                BSc in Software Engineering! 🎓
-              </div>
             </motion.div>
           </div>
 

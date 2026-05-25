@@ -5,76 +5,98 @@ import { useEffect, useRef } from 'react';
 export default function CustomCursor() {
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
+  const glowRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number | null>(null);
   const pos = useRef({ x: -100, y: -100 });
   const ringPos = useRef({ x: -100, y: -100 });
+  const hasMoved = useRef(false);
+  const visibleRef = useRef(true);
 
   useEffect(() => {
     const moveCursor = (e: MouseEvent) => {
-      pos.current = { x: e.clientX, y: e.clientY };
+      pos.current.x = e.clientX;
+      pos.current.y = e.clientY;
+      hasMoved.current = true;
     };
 
     const animate = () => {
-      // Dot follows instantly
-      if (dotRef.current) {
-        dotRef.current.style.transform = `translate3d(calc(${pos.current.x}px - 50%), calc(${pos.current.y}px - 50%), 0)`;
-      }
-      // Ring follows with lerp (smooth lag)
-      ringPos.current.x += (pos.current.x - ringPos.current.x) * 0.12;
-      ringPos.current.y += (pos.current.y - ringPos.current.y) * 0.12;
-      if (ringRef.current) {
-        ringRef.current.style.transform = `translate3d(calc(${ringPos.current.x}px - 50%), calc(${ringPos.current.y}px - 50%), 0)`;
+      if (visibleRef.current && hasMoved.current) {
+        // Dot follows instantly
+        if (dotRef.current) {
+          dotRef.current.style.transform = `translate3d(${pos.current.x}px, ${pos.current.y}px, 0)`;
+        }
+        // Ring follows with lerp
+        const dx = pos.current.x - ringPos.current.x;
+        const dy = pos.current.y - ringPos.current.y;
+        // Only update if there's meaningful movement
+        if (Math.abs(dx) > 0.1 || Math.abs(dy) > 0.1) {
+          ringPos.current.x += dx * 0.12;
+          ringPos.current.y += dy * 0.12;
+          if (ringRef.current) {
+            ringRef.current.style.transform = `translate3d(${ringPos.current.x}px, ${ringPos.current.y}px, 0)`;
+          }
+        } else {
+          hasMoved.current = false;
+        }
       }
       rafRef.current = requestAnimationFrame(animate);
     };
 
-    const handleHoverIn = () => {
-      ringRef.current?.classList.add('hovered');
-    };
-    const handleHoverOut = () => {
-      ringRef.current?.classList.remove('hovered');
+    const handleMouseOver = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (target?.closest?.('a, button, [data-hover]')) {
+        ringRef.current?.classList.add('hovered');
+      }
     };
 
-    // Also update the gradient CSS vars
+    const handleMouseOut = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (target?.closest?.('a, button, [data-hover]')) {
+        ringRef.current?.classList.remove('hovered');
+      }
+    };
+
+    // Throttled gradient update — only update every 2nd frame worth of movement
+    let gradientRaf: number | null = null;
     const updateGradient = (e: MouseEvent) => {
-      document.documentElement.style.setProperty('--mouse-x', `${(e.clientX / window.innerWidth) * 100}%`);
-      document.documentElement.style.setProperty('--mouse-y', `${(e.clientY / window.innerHeight) * 100}%`);
+      if (gradientRaf) return;
+      gradientRaf = requestAnimationFrame(() => {
+        if (glowRef.current) {
+          const xPct = `${(e.clientX / window.innerWidth) * 100}%`;
+          const yPct = `${(e.clientY / window.innerHeight) * 100}%`;
+          glowRef.current.style.setProperty('--mouse-x', xPct);
+          glowRef.current.style.setProperty('--mouse-y', yPct);
+        }
+        gradientRaf = null;
+      });
     };
 
-    document.addEventListener('mousemove', moveCursor);
-    document.addEventListener('mousemove', updateGradient);
+    const onVisibilityChange = () => {
+      visibleRef.current = !document.hidden;
+    };
 
-    // Add hover detection to all interactive elements
-    const interactables = document.querySelectorAll('a, button, [data-hover]');
-    interactables.forEach(el => {
-      el.addEventListener('mouseenter', handleHoverIn);
-      el.addEventListener('mouseleave', handleHoverOut);
-    });
+    document.addEventListener('mousemove', moveCursor, { passive: true });
+    document.addEventListener('mousemove', updateGradient, { passive: true });
+    document.addEventListener('mouseover', handleMouseOver, { passive: true });
+    document.addEventListener('mouseout', handleMouseOut, { passive: true });
+    document.addEventListener('visibilitychange', onVisibilityChange);
 
     rafRef.current = requestAnimationFrame(animate);
-
-    // Re-query on DOM changes
-    const observer = new MutationObserver(() => {
-      const newInteractables = document.querySelectorAll('a, button, [data-hover]');
-      newInteractables.forEach(el => {
-        el.removeEventListener('mouseenter', handleHoverIn);
-        el.removeEventListener('mouseleave', handleHoverOut);
-        el.addEventListener('mouseenter', handleHoverIn);
-        el.addEventListener('mouseleave', handleHoverOut);
-      });
-    });
-    observer.observe(document.body, { childList: true, subtree: true });
 
     return () => {
       document.removeEventListener('mousemove', moveCursor);
       document.removeEventListener('mousemove', updateGradient);
+      document.removeEventListener('mouseover', handleMouseOver);
+      document.removeEventListener('mouseout', handleMouseOut);
+      document.removeEventListener('visibilitychange', onVisibilityChange);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
-      observer.disconnect();
+      if (gradientRaf) cancelAnimationFrame(gradientRaf);
     };
   }, []);
 
   return (
     <>
+      <div ref={glowRef} className="cursor-gradient" aria-hidden="true" />
       <div ref={dotRef} className="cursor-dot" aria-hidden="true" />
       <div ref={ringRef} className="cursor-ring" aria-hidden="true" />
     </>

@@ -30,7 +30,7 @@ export default function Contact() {
             <p className="section-label">Get In Touch</p>
             <h2 className="section-title">Let&apos;s <span>Work Together</span></h2>
             <p className={styles.intro}>
-              Whether you have a project in mind, want to discuss opportunities, 
+              Whether you have a project in mind, want to discuss opportunities,
               or just want to say hello — I&apos;d love to hear from you!
             </p>
 
@@ -65,19 +65,8 @@ export default function Contact() {
               ))}
             </div>
 
-            {/* Avatar */}
-            <div className={styles.contactAvatar}>
-              <Image
-                src="/avatars/about.png"
-                alt="Atonu Ahmed"
-                width={360}
-                height={400}
-                className={styles.contactAvatarImg}
-              />
-              <div className={styles.contactSpeech}>
-                Let&apos;s build something amazing together! 🚀
-              </div>
-            </div>
+
+
           </div>
 
           {/* Form side */}
@@ -140,6 +129,20 @@ export default function Contact() {
               )}
             </div>
           </motion.div>
+
+        </div>
+        {/* Avatar */}
+        <div className={styles.contactAvatar}>
+          <Image
+            src="/avatars/hero.png"
+            alt="Atonu Ahmed"
+            width={540}
+            height={600}
+            className={styles.contactAvatarImg}
+          />
+          <div className={styles.contactSpeech}>
+            Let&apos;s build something amazing together! 🚀
+          </div>
         </div>
       </div>
     </section>

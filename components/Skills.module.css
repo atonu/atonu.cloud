@@ -1,4 +1,4 @@
-/* Skills section with scroll-driven animated background */
+/* Skills section */
 .skillsSection {
   position: relative;
   padding: 100px 60px;
@@ -6,78 +6,7 @@
   isolation: isolate;
 }
 
-/* ── SCROLL-DRIVEN STRIPE BACKGROUND (argyleink ZEdrzJZ style) ── */
-.scrollBg {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.scrollStripe {
-  flex: 1;
-  background: repeating-linear-gradient(
-    -45deg,
-    transparent,
-    transparent 8px,
-    rgba(245, 166, 35, 0.03) 8px,
-    rgba(245, 166, 35, 0.03) 16px
-  );
-  animation: stripe-scroll 8s linear infinite;
-  transform-origin: left center;
-}
-
-/* Alternate stripes go opposite direction */
-.scrollStripe:nth-child(even) {
-  background: repeating-linear-gradient(
-    45deg,
-    transparent,
-    transparent 8px,
-    rgba(79, 110, 247, 0.03) 8px,
-    rgba(79, 110, 247, 0.03) 16px
-  );
-  animation: stripe-scroll-rev 10s linear infinite;
-}
-
-/* Scroll-linked animation via animation-timeline */
-@keyframes stripe-scroll {
-  from { background-position: 0 0; }
-  to { background-position: 120px 120px; }
-}
-
-@keyframes stripe-scroll-rev {
-  from { background-position: 0 0; }
-  to { background-position: -120px 120px; }
-}
-
-/* Apply scroll-driven animation where supported */
-@supports (animation-timeline: scroll()) {
-  .scrollStripe {
-    animation: stripe-scroll-driven linear;
-    animation-timeline: scroll();
-    animation-range: 0% 100%;
-  }
-
-  @keyframes stripe-scroll-driven {
-    from { background-position: 0 0; transform: translateX(-8px); }
-    to { background-position: 120px 120px; transform: translateX(8px); }
-  }
-
-  .scrollStripe:nth-child(even) {
-    animation: stripe-scroll-driven-rev linear;
-    animation-timeline: scroll();
-    animation-range: 0% 100%;
-  }
-
-  @keyframes stripe-scroll-driven-rev {
-    from { background-position: 0 0; transform: translateX(8px); }
-    to { background-position: -120px 120px; transform: translateX(-8px); }
-  }
-}
-
-/* Gradient overlay on top of stripes for readability */
+/* Gradient overlay for readability */
 .skillsSection::before {
   content: '';
   position: absolute;
@@ -119,7 +48,6 @@
   border: 1px solid var(--border-color);
   border-radius: 20px;
   padding: 28px 24px;
-  backdrop-filter: blur(16px);
   box-shadow: var(--card-shadow);
 }
 
@@ -171,7 +99,6 @@
   border: 1px solid var(--border-color);
   border-radius: 20px;
   padding: 28px 24px;
-  backdrop-filter: blur(16px);
   box-shadow: var(--card-shadow);
 }
 
@@ -221,7 +148,6 @@
   border: 1px solid var(--border-color);
   border-radius: 20px;
   padding: 28px 24px;
-  backdrop-filter: blur(20px);
 }
 
 .tags {

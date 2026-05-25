@@ -45,9 +45,9 @@
   color: var(--text-primary);
   text-shadow: 0 4px 20px rgba(0,0,0,0.5);
   white-space: nowrap;
-  will-change: transform, opacity, filter;
+  will-change: transform, opacity;
   opacity: 0; 
-  pointer-events: none; /* Let clicks pass through the flying text to the content */
+  pointer-events: none;
 }
 
 .special {

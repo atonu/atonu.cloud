@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, ReactNode } from 'react';
+import { useRef, ReactNode, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
 import styles from './FlyingSkillsGrid.module.css';
 
@@ -29,8 +29,6 @@ function GridItem({
 
   const z = useTransform(scrollYProgress, [start, mid, end], [-1000, 0, 1000], { clamp: true });
   const opacity = useTransform(scrollYProgress, [start, mid, end], [0, 1, 0], { clamp: true });
-  const blurValue = useTransform(scrollYProgress, [start, mid, end], [5, 0, 5], { clamp: true });
-  const filter = useTransform(blurValue, (v) => `blur(${v}px)`);
 
   const gridArea = isSpecial 
     ? '2 / 2 / span 2 / span 2' 
@@ -39,7 +37,7 @@ function GridItem({
   return (
     <motion.div
       className={`${styles.gridItem} ${isSpecial ? styles.special : ''}`}
-      style={{ z, opacity, filter, gridArea }}
+      style={{ z, opacity, gridArea }}
     >
       {isSpecial ? <b>{tag}</b> : tag}
     </motion.div>
@@ -48,11 +46,23 @@ function GridItem({
 
 export default function FlyingSkillsGrid({ children }: { children?: ReactNode }) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [showFlying, setShowFlying] = useState(true);
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start end', 'end start'] 
   });
+
+  useEffect(() => {
+    if (containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      // If the container's top is already above the bottom of the screen when mounting,
+      // it means we are scrolling up from the section below.
+      if (rect.top < 0) {
+        setShowFlying(false);
+      }
+    }
+  }, []);
 
   return (
     <div className={styles.flyingWrapper} ref={containerRef}>
@@ -65,9 +75,7 @@ export default function FlyingSkillsGrid({ children }: { children?: ReactNode })
           </div>
         )}
 
-        {/* <GridItem tag="Atonu" index={-1} scrollYProgress={scrollYProgress} isSpecial /> */}
-        
-        {tags.map((tag, i) => (
+        {showFlying && tags.map((tag, i) => (
           <GridItem 
             key={i} 
             tag={tag} 

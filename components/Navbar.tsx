@@ -49,12 +49,12 @@ export default function Navbar() {
         setActive('home');
       }
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
       observer.disconnect();
       window.removeEventListener('scroll', handleScroll);
-      clearTimeout(clickTimeout.current);
+      if (clickTimeout.current) clearTimeout(clickTimeout.current);
     };
   }, []);
 

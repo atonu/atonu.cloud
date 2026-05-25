@@ -2,7 +2,7 @@
 
 import { useRef, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { PerspectiveCamera, Float, RoundedBox } from '@react-three/drei';
+import { PerspectiveCamera, Float, RoundedBox, Environment, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 
 // ── ROOM COMPONENTS ──────────────────────────────────────────────────────────
@@ -52,6 +52,8 @@ function Desk() {
 }
 
 function Monitors() {
+  const rickTexture = useTexture('/avatars/mario.png');
+
   return (
     <group position={[0.3, -0.12, -0.8]}>
       {/* Monitor 1 */}
@@ -92,18 +94,9 @@ function Monitors() {
         <RoundedBox args={[0.85, 0.55, 0.04]} radius={0.02} smoothness={2} castShadow>
           <meshStandardMaterial color="#1a1a2e" roughness={0.3} metalness={0.5} />
         </RoundedBox>
-        <mesh position={[0, 0, 0.025]}>
-          <boxGeometry args={[0.77, 0.47, 0.01]} />
-          <meshStandardMaterial color="#0d1b2a" emissive="#2a1a40" emissiveIntensity={0.5} />
-        </mesh>
-        {/* Chart circle */}
-        <mesh position={[0.05, 0.05, 0.03]}>
-          <circleGeometry args={[0.12, 32]} />
-          <meshStandardMaterial color="#f5a623" emissive="#f5a623" emissiveIntensity={0.8} />
-        </mesh>
-        <mesh position={[0.05, 0.05, 0.035]}>
-          <ringGeometry args={[0.07, 0.12, 32, 1, 0, Math.PI * 1.4]} />
-          <meshStandardMaterial color="#4f6ef7" emissive="#4f6ef7" emissiveIntensity={1} />
+        <mesh position={[0, 0, 0.026]}>
+          <planeGeometry args={[0.77, 0.47]} />
+          <meshBasicMaterial map={rickTexture} toneMapped={false} />
         </mesh>
         {/* Stand */}
         <mesh position={[0, -0.34, 0.05]}>
@@ -219,7 +212,7 @@ function DeskLamp() {
         <meshStandardMaterial color="#f0c040" roughness={0.5} side={THREE.DoubleSide} />
       </mesh>
       {/* Light */}
-      <pointLight position={[0.12, 0.65, -0.15]} intensity={0.8} color="#ffdd88" distance={2.5} castShadow />
+      <pointLight position={[0.12, 0.65, -0.15]} intensity={0.8} color="#ffdd88" distance={2.5} castShadow shadow-mapSize={[1024, 1024]} shadow-bias={-0.0005} />
     </group>
   );
 }
@@ -301,6 +294,8 @@ function SmallPlant() {
 
 // ── SCENE WRAPPER WITH MOUSE PARALLAX ────────────────────────────────────────
 
+import { useInView } from 'framer-motion';
+
 function SceneContent() {
   const mouseRef = useRef({ x: 0, y: 0 });
   const { camera } = useThree();
@@ -330,43 +325,60 @@ function SceneContent() {
 }
 
 export default function AboutThreeScene() {
+  const container = useRef<HTMLDivElement>(null);
+  const isInView = useInView(container, { margin: "200px" }); // Render a bit before it enters
+
   return (
-    <Canvas
-      shadows
-      gl={{ antialias: true, alpha: true }}
-      style={{ width: '100%', height: '100%', background: 'transparent' }}
-    >
-      <PerspectiveCamera makeDefault position={[4, 3.5, 5]} fov={45} />
-      <SceneContent />
+    <div ref={container} style={{ width: '100%', height: '100%' }}>
+      <Canvas
+        frameloop={isInView ? 'always' : 'demand'}
+        shadows
+        dpr={[1, 3]}
+        gl={{
+          antialias: true,
+          alpha: true,
+          powerPreference: 'high-performance',
+          toneMapping: THREE.ACESFilmicToneMapping,
+          toneMappingExposure: 1.1
+        }}
+        style={{ width: '100%', height: '100%', background: 'transparent' }}
+      >
+        <PerspectiveCamera makeDefault position={[4, 3.5, 5]} fov={45} />
+        <SceneContent />
 
-      <ambientLight intensity={0.6} color="#fff5e0" />
-      <directionalLight
-        position={[5, 8, 5]}
-        intensity={1.2}
-        castShadow
-        shadow-mapSize={[1024, 1024]}
-        color="#fffaf0"
-      />
-      <pointLight position={[-3, 3, 2]} intensity={0.4} color="#4f6ef7" />
+        <ambientLight intensity={0.8} color="#fff5e0" />
+        <directionalLight
+          position={[5, 8, 5]}
+          intensity={1.2}
+          castShadow
+          shadow-mapSize={[2048, 2048]}
+          shadow-bias={-0.0005}
+          color="#fffaf0"
+        >
+          <orthographicCamera attach="shadow-camera" args={[-8, 8, 8, -8]} />
+        </directionalLight>
+        <Environment preset="city" />
+        <pointLight position={[-3, 3, 2]} intensity={0.4} color="#4f6ef7" />
 
-      <Float floatIntensity={0.3} speed={1.5} rotationIntensity={0.1}>
-        <group rotation={[0.1, -0.4, 0]}>
-          <Floor />
-          <Rug />
-          <BackWall />
-          <SideWall />
-          <Desk />
-          <Monitors />
-          <Chair />
-          <Bookshelf />
-          <Plant />
-          <DeskLamp />
-          <CoffeeMug />
-          <Window />
-          <Poster />
-          <SmallPlant />
-        </group>
-      </Float>
-    </Canvas>
+        <Float floatIntensity={0.3} speed={1.5} rotationIntensity={0.1}>
+          <group rotation={[0.1, -0.4, 0]}>
+            <Floor />
+            <Rug />
+            <BackWall />
+            <SideWall />
+            <Desk />
+            <Monitors />
+            <Chair />
+            <Bookshelf />
+            <Plant />
+            <DeskLamp />
+            <CoffeeMug />
+            <Window />
+            <Poster />
+            <SmallPlant />
+          </group>
+        </Float>
+      </Canvas>
+    </div>
   );
 }
