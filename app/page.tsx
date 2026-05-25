@@ -31,10 +31,8 @@ export default function Home() {
         <Navbar />
 
         <main className="main-content" id="main">
-          {/* Hero - lazy loaded with skeleton */}
-          <LazySection id="home" minHeight="100vh" rootMargin="0px 0px">
-            <HeroSection />
-          </LazySection>
+          {/* Hero - sticky background */}
+          <HeroSection id="home" />
 
           {/* Content that scrolls over the hero */}
           <div style={{ position: 'relative', zIndex: 2, background: 'var(--bg-primary)' }}>

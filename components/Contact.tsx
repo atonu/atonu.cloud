@@ -24,16 +24,19 @@ export default function Contact() {
       style={{ background: 'linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%)' }}
     >
       <div className="section-inner">
-        <div className={styles.contactLayout}>
-          {/* Info side */}
-          <div className={styles.infoSide}>
-            <p className="section-label">Get In Touch</p>
-            <h2 className="section-title">Let&apos;s <span>Work Together</span></h2>
-            <p className={styles.intro}>
-              Whether you have a project in mind, want to discuss opportunities,
-              or just want to say hello — I&apos;d love to hear from you!
-            </p>
+        {/* Text Banner */}
+        <div className={styles.textBanner}>
+          <p className="section-label">Get In Touch</p>
+          <h2 className="section-title">Let&apos;s <span>Work Together</span></h2>
+          <p className={styles.intro}>
+            Whether you have a project in mind, want to discuss opportunities,
+            or just want to say hello — I&apos;d love to hear from you!
+          </p>
+        </div>
 
+        <div className={styles.contactLayout}>
+          {/* Info side (Cards) */}
+          <div className={styles.infoSide}>
             <div className={styles.contactLinks}>
               {[
                 { icon: '✉', label: 'Email', value: 'atonu.zahin@gmail.com', href: 'mailto:atonu.zahin@gmail.com' },

@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import styles from './Hero.module.css';
 
-export default function HeroSection() {
+export default function HeroSection({ id }: { id?: string }) {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -19,6 +19,9 @@ export default function HeroSection() {
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
+      // Skip expensive math if hero is completely covered by scrolled content
+      if (window.scrollY > window.innerHeight) return;
+
       const { innerWidth, innerHeight } = window;
       const xPct = (e.clientX / innerWidth) - 0.5;
       const yPct = (e.clientY / innerHeight) - 0.5;
@@ -26,12 +29,12 @@ export default function HeroSection() {
       mouseY.set(yPct);
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, [mouseX, mouseY]);
 
   return (
-    <section className={styles.hero}>
+    <section id={id} className={styles.hero}>
       {/* Sticky hero background */}
       <div className={styles.heroSticky}>
         {/* Download CV button top right (furthest to right) */}
