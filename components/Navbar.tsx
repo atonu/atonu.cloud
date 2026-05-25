@@ -92,7 +92,7 @@ export default function Navbar() {
       {/* Nav Items */}
       <ul className={styles.navList}>
         {navItems.map(({ id, Icon, label }) => (
-          <li key={id}>
+          <li key={id} className={id === 'about' ? styles.hideOnMobile : ''}>
             <button
               id={`nav-${id}`}
               className={`${styles.navItem} ${active === id && active !== 'home' ? styles.active : ''}`}
