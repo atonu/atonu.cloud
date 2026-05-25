@@ -3,15 +3,15 @@
 /* ===== CSS CUSTOM PROPERTIES - DARK IS DEFAULT ===== */
 :root {
   /* Dark theme (DEFAULT - matches reference design) */
-  --bg-primary: #0a0a0f;
-  --bg-secondary: #111118;
-  --bg-card: #16161f;
-  --bg-card-hover: #1c1c28;
-  --border-color: #2a2a3a;
-  --border-subtle: #1f1f2e;
-  --text-primary: #f0f0ff;
-  --text-secondary: #9898bb;
-  --text-muted: #5a5a7a;
+  --bg-primary: #2E3E48;
+  --bg-secondary: #243139;
+  --bg-card: #202b33;
+  --bg-card-hover: #29363f;
+  --border-color: #3f525e;
+  --border-subtle: #344652;
+  --text-primary: #f0f4f8;
+  --text-secondary: #a8bbc6;
+  --text-muted: #7d93a1;
   --accent-primary: #f5a623;
   --accent-secondary: #4f6ef7;
   --accent-glow: rgba(245, 166, 35, 0.15);
@@ -33,12 +33,12 @@
 }
 
 [data-theme="light"] {
-  --bg-primary: #f0f0f8;
+  --bg-primary: #fbf0dc;
   --bg-secondary: #ffffff;
   --bg-card: #ffffff;
-  --bg-card-hover: #f8f8ff;
-  --border-color: #e0e0f0;
-  --border-subtle: #ebebf5;
+  --bg-card-hover: #fcf6eb;
+  --border-color: #ebdcb9;
+  --border-subtle: #f2e9d5;
   --text-primary: #0a0a1a;
   --text-secondary: #555578;
   --text-muted: #8888aa;

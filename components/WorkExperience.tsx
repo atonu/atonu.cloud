@@ -10,7 +10,6 @@ const experiences = [
     company: 'SELISE Group AG',
     period: '2023/11 — 2026/04',
     flag: '🇨🇭',
-    current: true,
     bullets: [
       'Engineered scalable distributed SaaS systems ensuring precision for data-intensive platforms',
       'Technical manager, client-facing developer and front-end lead of blockchain-based SaaS with smart contracts',
