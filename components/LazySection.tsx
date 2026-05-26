@@ -29,7 +29,10 @@ export default function LazySection({
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsVisible(entry.isIntersecting);
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect(); // Once visible, keep it mounted forever
+        }
       },
       { rootMargin }
     );

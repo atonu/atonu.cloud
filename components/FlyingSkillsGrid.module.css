@@ -16,6 +16,7 @@
   position: sticky;
   top: 0;
   overflow: hidden;
+  touch-action: pan-y; /* Ensure vertical scrolling passes through on mobile */
 }
 
 /* New overlay content */
@@ -28,13 +29,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow-y: auto; /* Allow scrolling inner content if it overflows on small screens */
-  /* Hide scrollbar for cleaner look */
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  overflow: visible;
+  pointer-events: none; /* Let scroll events pass through to the page */
 }
-.overlayContent::-webkit-scrollbar {
-  display: none;
+
+.overlayContent > * {
+  pointer-events: auto; /* Re-enable interaction on actual content */
 }
 
 .gridItem {
