@@ -17,7 +17,7 @@
 }
 
 .headerContent {
-  padding-top: 100px;
+  padding-top: 48px;
   background: var(--bg-primary);
   z-index: 10;
   padding-bottom: 20px;
@@ -45,7 +45,7 @@
   border: 1px solid var(--border-color);
   border-radius: 20px;
   padding: 40px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
   text-decoration: none;
   display: flex;
   flex-direction: column;
@@ -129,20 +129,24 @@
   .cardContainer {
     height: 90vh;
   }
+
   .card {
     padding: 24px;
     gap: 20px;
   }
+
   .cardHeader {
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
     padding-right: 0;
   }
+
   .linkedinIcon {
     top: -10px;
     right: -10px;
   }
+
   .cardBody {
     font-size: 0.95rem;
   }
