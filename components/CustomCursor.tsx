@@ -65,9 +65,19 @@ export default function CustomCursor() {
     };
 
     const checkHeroHover = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
       const hero = document.getElementById('home');
-      if (hero && hero.contains(target)) {
+      let isOverHero = false;
+      if (hero) {
+        const rect = hero.getBoundingClientRect();
+        // Check if mouse is vertically within the Hero section
+        isOverHero = e.clientY >= rect.top && e.clientY <= rect.bottom;
+      }
+
+      const target = e.target as HTMLElement;
+      const nav = document.querySelector('nav');
+      const isOverNav = nav ? nav.contains(target) : false;
+
+      if (isOverHero || isOverNav) {
         if (!visibleRef.current) {
           visibleRef.current = true;
           document.body.classList.add('hide-default-cursor');

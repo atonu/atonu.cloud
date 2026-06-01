@@ -73,12 +73,34 @@ export default function Navbar() {
     if (clickTimeout.current) clearTimeout(clickTimeout.current);
     clickTimeout.current = setTimeout(() => {
       isClicking.current = false;
-    }, 1000); // Wait for smooth scroll to finish
+    }, 1500); // Wait longer for potential two-step scroll
 
-    if (id === 'home') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    const mainContainer = document.getElementById('main')?.firstElementChild as HTMLElement;
+    const stickyPoint = mainContainer ? Math.max(0, mainContainer.offsetHeight - window.innerHeight) : 0;
+    const isCurrentlyInContact = window.scrollY > stickyPoint + 20;
+
+    const doFinalScroll = () => {
+      if (id === 'home') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        const el = document.getElementById(id);
+        if (el) {
+          // Calculate the target scroll position safely (since we are unstuck now)
+          const targetY = el.getBoundingClientRect().top + window.scrollY;
+          window.scrollTo({ top: targetY, behavior: 'smooth' });
+        }
+      }
+    };
+
+    if (isCurrentlyInContact) {
+      // Step 1: Scroll to hide contact section (end of non-sticky content)
+      window.scrollTo({ top: stickyPoint, behavior: 'smooth' });
+      
+      // Step 2: Calculate target and scroll to it after hiding contact section
+      setTimeout(doFinalScroll, 600);
     } else {
-      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+      // NORMAL SCROLL
+      doFinalScroll();
     }
   };
 
