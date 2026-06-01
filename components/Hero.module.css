@@ -2,13 +2,11 @@
 
 /* The whole section takes full viewport and sticks to top */
 .hero {
-  position: sticky;
-  top: 0;
+  position: relative;
   width: 100%;
   height: 100vh;
   background: transparent;
   z-index: 1;
-  /* Stay behind the scrolling content */
   overflow: hidden;
 }
 

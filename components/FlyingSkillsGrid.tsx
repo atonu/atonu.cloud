@@ -1,7 +1,7 @@
 'use client';
 
-import { useRef, ReactNode, useState, useEffect } from 'react';
-import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
+import { useRef, ReactNode, useState } from 'react';
+import { motion, useScroll, useTransform, MotionValue, useMotionValueEvent } from 'framer-motion';
 import styles from './FlyingSkillsGrid.module.css';
 
 const tags = [
@@ -16,19 +16,24 @@ function GridItem({
   tag,
   index,
   scrollYProgress,
+  isActive,
   isSpecial
 }: {
   tag: string;
   index: number;
   scrollYProgress: MotionValue<number>;
+  isActive: boolean;
   isSpecial?: boolean;
 }) {
   const start = isSpecial ? 0.1 : (((index * 3) % 70) / 100); // 0.0 to 0.69
   const end = isSpecial ? 0.8 : start + 0.3; // 0.3 to 0.99
   const mid = (start + end) / 2;
 
-  const z = useTransform(scrollYProgress, [start, mid, end], [-1000, 0, 1000], { clamp: true });
-  const opacity = useTransform(scrollYProgress, [start, mid, end], [0, 1, 0], { clamp: true });
+  const zTransform = useTransform(scrollYProgress, [start, mid, end], [-1000, 0, 1000], { clamp: true });
+  const opacityTransform = useTransform(scrollYProgress, [start, mid, end], [0, 1, 0], { clamp: true });
+
+  const z = useTransform(() => isActive ? zTransform.get() : -1000);
+  const opacity = useTransform(() => isActive ? opacityTransform.get() : 0);
 
   const gridArea = isSpecial 
     ? '2 / 2 / span 2 / span 2' 
@@ -46,23 +51,20 @@ function GridItem({
 
 export default function FlyingSkillsGrid({ children }: { children?: ReactNode }) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [showFlying, setShowFlying] = useState(true);
-  
+  const [isActive, setIsActive] = useState(true);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start end', 'end start'] 
   });
 
-  useEffect(() => {
-    if (containerRef.current) {
-      const rect = containerRef.current.getBoundingClientRect();
-      // If the container's top is already above the bottom of the screen when mounting,
-      // it means we are scrolling up from the section below.
-      if (rect.top < 0) {
-        setShowFlying(false);
-      }
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    if (latest >= 0.99) {
+      setIsActive(false); // Reset when scrolled past
+    } else if (latest <= 0.01) {
+      setIsActive(true); // Reactivate when back at the top
     }
-  }, []);
+  });
 
   return (
     <div className={styles.flyingWrapper} ref={containerRef}>
@@ -75,12 +77,13 @@ export default function FlyingSkillsGrid({ children }: { children?: ReactNode })
           </div>
         )}
 
-        {showFlying && tags.map((tag, i) => (
+        {tags.map((tag, i) => (
           <GridItem 
             key={i} 
             tag={tag} 
             index={i} 
             scrollYProgress={scrollYProgress} 
+            isActive={isActive}
           />
         ))}
       </div>
