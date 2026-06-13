@@ -4,75 +4,110 @@ import { motion } from 'framer-motion';
 import FlyingSkillsGrid from './FlyingSkillsGrid';
 import styles from './Skills.module.css';
 
+const skillStars = [
+  { name: 'Angular', color: '#dd0031' },
+  { name: 'React', color: '#61dafb' },
+  { name: '.NET', color: '#512bd4' },
+  { name: 'NodeJS', color: '#3c873a' },
+  { name: 'Azure', color: '#0078d4' },
+  { name: 'Product Management', color: '#f5a623' },
+];
+
 const coreSkills = [
-  { name: 'TypeScript', level: 95, color: '#3178c6' },
-  { name: 'Angular', level: 92, color: '#dd0031' },
-  { name: 'React', level: 88, color: '#61dafb' },
-  { name: '.NET / C#', level: 85, color: '#512bd4' },
-  { name: 'Node.js', level: 85, color: '#3c873a' },
-  { name: 'MongoDB', level: 80, color: '#47a248' },
+  { name: 'NextJS', level: 90, color: '#f5a623' },
+  { name: 'NestJS', level: 88, color: '#e0234e' },
+  { name: 'RAG', level: 85, color: '#a855f7' },
+  { name: 'SOLID design principle', level: 92, color: '#3b82f6' },
+  { name: 'Design Pattern', level: 90, color: '#10b981' },
+  { name: 'MongoDB', level: 85, color: '#47a248' },
+  { name: 'DevOps', level: 82, color: '#2496ed' },
+  { name: 'Claude code', level: 88, color: '#d97706' },
+  { name: 'Gemini', level: 90, color: '#4285f4' },
+  { name: 'AI Automation', level: 86, color: '#8b5cf6' },
+  { name: 'PWA', level: 88, color: '#5a0fc8' },
+  { name: 'Golang', level: 80, color: '#00add8' },
+  { name: 'Python', level: 84, color: '#3776ab' },
+  { name: 'Blockchain', level: 85, color: '#f5a623' },
+  { name: 'Docker', level: 82, color: '#2496ed' },
+  { name: 'Redis', level: 80, color: '#d82c20' },
+  { name: 'PostgreSQL', level: 86, color: '#336791' },
+  { name: 'CI/CD', level: 85, color: '#208838' },
+  { name: 'C++', level: 78, color: '#00599c' },
+  { name: 'C#', level: 85, color: '#178600' },
+  { name: 'SQL', level: 88, color: '#00bcff' },
+  { name: 'Firebase', level: 85, color: '#ffca28' },
+  { name: 'Amazon S3', level: 84, color: '#ff9900' },
+  { name: 'Sass', level: 88, color: '#cc6699' },
+  { name: 'Tailwind', level: 90, color: '#38bdf8' },
+  { name: 'Grid/Flex', level: 95, color: '#ff5a00' },
 ];
 
-const skillRings = [
-  { name: 'Full Stack', value: 95 },
-  { name: 'Cloud / AWS', value: 82 },
-  { name: 'DevOps', value: 78 },
-  { name: 'Product Mgmt', value: 88 },
-];
-
-function SkillRing({ name, value }: { name: string; value: number }) {
-  const radius = 38;
-  const circumference = 2 * Math.PI * radius;
-  const offset = circumference - (value / 100) * circumference;
+function SkillStar({ name }: { name: string; color: string }) {
+  const gradientId = `goldStarGrad-${name.replace(/\s+/g, '-')}`;
   return (
-    <div className={styles.ringItem}>
-      <div className={styles.ring}>
-        <svg width="90" height="90" viewBox="0 0 90 90">
-          <circle cx="45" cy="45" r={radius} stroke="rgba(255,255,255,0.08)" strokeWidth="7" fill="none" />
-          <motion.circle
-            cx="45" cy="45" r={radius}
-            stroke="var(--accent-primary)" strokeWidth="7" fill="none"
+    <div className={styles.starItem}>
+      <motion.div
+        className={styles.starWrapper}
+        whileHover={{ scale: 1.08, translateY: -4 }}
+        transition={{ type: 'spring', stiffness: 300, damping: 15 }}
+      >
+        <svg width="120" height="120" viewBox="0 0 120 120" className={styles.starSvg}>
+          <defs>
+            <linearGradient id={gradientId} x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#c59b27" />   {/* Deep Gold */}
+              <stop offset="35%" stopColor="#f5a623" />  {/* Golden Orange Accent */}
+              <stop offset="75%" stopColor="#ffd700" />  {/* Bright Gold */}
+              <stop offset="100%" stopColor="#ffffff" /> {/* White Top-Right */}
+            </linearGradient>
+          </defs>
+          <path
+            d="M 60 14.8 L 76.5 42.2 L 107.6 49.4 L 86.6 73.5 L 89.4 105.3 L 60 92.8 L 30.6 105.3 L 33.4 73.5 L 12.5 49.4 L 43.5 42.2 Z"
+            fill={`url(#${gradientId})`}
+            stroke={`url(#${gradientId})`}
+            strokeWidth="5"
+            strokeLinejoin="round"
             strokeLinecap="round"
-            strokeDasharray={circumference}
-            initial={{ strokeDashoffset: circumference }}
-            whileInView={{ strokeDashoffset: offset }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.2, ease: 'easeOut', delay: 0.1 }}
+            className={styles.starPath}
+            style={{ filter: 'drop-shadow(0 4px 10px rgba(245, 166, 35, 0.25))' }}
           />
         </svg>
-        <span className={styles.ringValue}>{value}%</span>
-      </div>
-      <span className={styles.ringLabel}>{name}</span>
+        <span className={styles.starLabel}>{name}</span>
+      </motion.div>
     </div>
   );
 }
 
-function SkillBar({ name, level, color }: { name: string; level: number; color: string }) {
+function SkillChip({ name, color }: { name: string; color: string }) {
   return (
-    <div className={styles.skillBar}>
-      <div className={styles.skillBarHeader}>
-        <span className={styles.skillBarName}>{name}</span>
-        <span className={styles.skillBarLevel}>{level}%</span>
-      </div>
-      <div className={styles.skillBarTrack}>
-        <motion.div
-          className={styles.skillBarFill}
-          style={{ backgroundColor: color, boxShadow: `0 0 10px ${color}55` }}
-          initial={{ width: 0 }}
-          whileInView={{ width: `${level}%` }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, ease: 'easeOut', delay: 0.1 }}
-        />
-      </div>
-    </div>
+    <motion.div
+      className={styles.skillChip}
+      style={{
+        borderColor: `${color}28`,
+        background: 'rgba(255, 255, 255, 0.02)',
+      }}
+      whileHover={{
+        scale: 1.04,
+        borderColor: color,
+        background: `${color}10`,
+        boxShadow: `0 4px 12px ${color}20`,
+      }}
+      transition={{ type: 'spring', stiffness: 400, damping: 15 }}
+    >
+      <span 
+        className={styles.chipDot} 
+        style={{ 
+          backgroundColor: color, 
+          boxShadow: `0 0 8px ${color}` 
+        }} 
+      />
+      <span className={styles.chipName}>{name}</span>
+    </motion.div>
   );
 }
 
 export default function Skills() {
   return (
     <section className={styles.skillsSection}>
-
-
       <FlyingSkillsGrid>
         <div className={styles.skillsInner}>
           <p className="section-label">Technical Expertise</p>
@@ -82,21 +117,21 @@ export default function Skills() {
           <div className={styles.skillsGrid}>
             <div className={styles.ringsSection}>
               <h3 className={styles.subsectionTitle}>Competency</h3>
-              <div className={styles.rings}>
-                {skillRings.map((r) => <SkillRing key={r.name} {...r} />)}
+              <div className={styles.starsGrid}>
+                {skillStars.map((s) => <SkillStar key={s.name} {...s} />)}
               </div>
             </div>
 
             <div className={styles.barsSection}>
               <h3 className={styles.subsectionTitle}>Core Stack</h3>
               <div className={styles.bars}>
-                {coreSkills.map((s) => <SkillBar key={s.name} {...s} />)}
+                {coreSkills.map((s) => <SkillChip key={s.name} {...s} />)}
               </div>
             </div>
           </div>
         </div>
       </FlyingSkillsGrid>
-
     </section>
   );
 }
+

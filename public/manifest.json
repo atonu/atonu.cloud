@@ -1,0 +1,29 @@
+{
+  "name": "Atonu Ahmed — Senior Software Engineer & Product Manager",
+  "short_name": "Atonu Ahmed",
+  "description": "Portfolio of Atonu Ahmed — 7+ years building full-stack SaaS products, microservices, and elegant digital experiences.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#2E3E48",
+  "theme_color": "#2E3E48",
+  "orientation": "portrait",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
