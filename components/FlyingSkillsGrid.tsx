@@ -69,14 +69,6 @@ export default function FlyingSkillsGrid({ children }: { children?: ReactNode })
   return (
     <div className={styles.flyingWrapper} ref={containerRef}>
       <div className={styles.stuckGrid}>
-        
-        {/* Content overlaid at Z=0 */}
-        {children && (
-          <div className={styles.overlayContent}>
-            {children}
-          </div>
-        )}
-
         {tags.map((tag, i) => (
           <GridItem 
             key={i} 
@@ -87,6 +79,13 @@ export default function FlyingSkillsGrid({ children }: { children?: ReactNode })
           />
         ))}
       </div>
+
+      {/* Content overlaid at Z=0 */}
+      {children && (
+        <div className={styles.overlayContent}>
+          {children}
+        </div>
+      )}
     </div>
   );
 }

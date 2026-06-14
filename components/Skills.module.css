@@ -192,3 +192,26 @@
   .skillsSection { padding: 70px 24px; }
   .bars { gap: 8px; }
 }
+
+@media (max-width: 480px) {
+  .starItem,
+  .starWrapper {
+    width: 100px !important;
+    height: 100px !important;
+  }
+  .starSvg {
+    width: 100px !important;
+    height: 100px !important;
+  }
+  .starLabel {
+    font-size: 0.62rem !important;
+    max-width: 58px !important;
+    line-height: 1.2 !important;
+    text-shadow:
+      -1px -1px 0 #000,
+       1px -1px 0 #000,
+      -1px  1px 0 #000,
+       1px  1px 0 #000,
+       0px 2px 4px rgba(0, 0, 0, 0.85) !important;
+  }
+}
