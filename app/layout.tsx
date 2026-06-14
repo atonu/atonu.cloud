@@ -20,9 +20,9 @@ export const metadata: Metadata = {
     siteName: "Atonu Ahmed Portfolio",
     images: [
       {
-        url: "/avatars/hero-main.png",
-        width: 850,
-        height: 832,
+        url: "/avatars/about.png",
+        width: 1200,
+        height: 630,
         alt: "Atonu Ahmed Portfolio",
       },
     ],
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     title: "Atonu Ahmed — Senior Software Engineer & Product Manager",
     description:
       "7+ years building full-stack SaaS products, microservices, and elegant digital experiences.",
-    images: ["/avatars/hero-main.png"],
+    images: ["/avatars/about.png"],
   },
   manifest: "/manifest.json",
   icons: {
