@@ -21,7 +21,7 @@ const experiences: Experience[] = [
     company: 'ELO',
     location: 'Dhaka, Bangladesh',
     period: '2018/10 — 2019/04',
-    periods: ['2026/06 — Present', '2018/10 — 2019/04'],
+    periods: ['2026/05 — Present', '2018/10 — 2019/04'],
     flag: '🇧🇩',
     bullets: [
       'Full stack developer for client projects',
