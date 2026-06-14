@@ -8,6 +8,7 @@ type Experience = {
   role: string;
   company: string;
   period: string;
+  periods?: string[];
   flag: string;
   bullets: string[];
   location?: string;
@@ -15,6 +16,18 @@ type Experience = {
 };
 
 const experiences: Experience[] = [
+  {
+    role: 'Software Engineer',
+    company: 'ELO',
+    location: 'Dhaka, Bangladesh',
+    period: '2018/10 — 2019/04',
+    periods: ['2026/06 — Present', '2018/10 — 2019/04'],
+    flag: '🇧🇩',
+    bullets: [
+      'Full stack developer for client projects',
+      'Increased flexibility working across different frameworks and infrastructures',
+    ],
+  },
   {
     role: 'Senior Software Engineer',
     company: 'SELISE Group AG',
@@ -72,17 +85,6 @@ const experiences: Experience[] = [
       'File management with Amazon S3 via minIO',
       'Created FTP client with Go integrating a German postal service API',
       'Responsive UI developments with SCSS and Flex',
-    ],
-  },
-  {
-    role: 'Software Engineer',
-    company: 'Embedded Logic Operations',
-    location: 'Dhaka, Bangladesh',
-    period: '2018/10 — 2019/04',
-    flag: '🇧🇩',
-    bullets: [
-      'Established ground work for 2 major projects with Angular',
-      'Increased flexibility working across different frameworks and infrastructures',
     ],
   },
 ];
@@ -153,7 +155,15 @@ export default function WorkExperience() {
                         {exp.location && <span className={styles.expLocation}> · {exp.location}</span>}
                       </div>
                     </div>
-                    <div className={styles.expPeriod}>{exp.period}</div>
+                    {exp.periods ? (
+                      <div className={styles.expPeriodsCol}>
+                        {exp.periods.map((p) => (
+                          <div key={p} className={styles.expPeriod}>{p}</div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className={styles.expPeriod}>{exp.period}</div>
+                    )}
                   </div>
                   <ul className={styles.expBullets}>
                     {exp.bullets.map((b, j) => (

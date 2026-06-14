@@ -3,7 +3,7 @@
   position: relative;
   z-index: 10;
   background: var(--bg-primary);
-  margin-top: -100vh;
+  margin-top: -60vh;
   /* Slides up and covers the sticky skills section */
   box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.5);
   /* Adds a layered card shadow */
@@ -215,11 +215,22 @@
   margin-top: 1px;
 }
 
+.expPeriodsCol {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-end;
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
+  .expSection {
+    margin-top: 0 !important;
+  }
+
   .expLayout {
     grid-template-columns: 1fr;
-    padding: 80px 40px;
+    padding: 40px 40px;
     gap: 40px;
   }
 
@@ -231,10 +242,14 @@
 
 @media (max-width: 640px) {
   .expLayout {
-    padding: 60px 20px;
+    padding: 30px 20px;
   }
 
   .expCard {
     padding: 18px 16px;
+  }
+
+  .expPeriodsCol {
+    align-items: flex-start;
   }
 }

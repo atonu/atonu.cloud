@@ -69,7 +69,7 @@ export default function Home() {
 
             <div className="divider" />
 
-            <LazySection id="skills" minHeight="200vh">
+            <LazySection id="skills" minHeight="160vh">
               <Skills />
             </LazySection>
 

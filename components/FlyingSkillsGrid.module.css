@@ -1,5 +1,5 @@
 .flyingWrapper {
-  height: 200vh;
+  height: 160vh;
   position: relative;
   z-index: 2;
 }
@@ -62,11 +62,15 @@
 
 @media (max-width: 768px) {
   .flyingWrapper {
-    min-height: 220vh;
-    height: auto;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    grid-template-rows: 1fr !important;
+    min-height: auto !important;
+    height: auto !important;
   }
   
   .stuckGrid {
+    grid-area: 1 / 1 / 2 / 2 !important;
     position: sticky !important;
     top: 0 !important;
     height: 100vh !important;
@@ -75,16 +79,14 @@
   }
   
   .overlayContent {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
+    grid-area: 1 / 1 / 2 / 2 !important;
+    position: relative !important;
     width: 100% !important;
     height: auto !important;
-    min-height: 100% !important;
     display: block !important;
     margin-top: 0 !important;
     padding-top: 40px !important;
-    padding-bottom: 80px !important;
+    padding-bottom: 20px !important;
     z-index: 5 !important;
   }
   

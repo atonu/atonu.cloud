@@ -189,8 +189,16 @@
 }
 
 @media (max-width: 768px) {
-  .skillsSection { padding: 70px 24px; }
-  .bars { gap: 8px; }
+  .skillsSection {
+    padding: 60px 24px 20px 24px;
+  }
+  .skillsGrid {
+    margin-bottom: 16px;
+  }
+  .bars { gap: 16px; }
+  .skillChip {
+    padding: 16px 20px;
+  }
 }
 
 @media (max-width: 480px) {
