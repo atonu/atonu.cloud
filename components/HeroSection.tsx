@@ -66,13 +66,15 @@ export default function HeroSection({ id }: { id?: string }) {
           </p>
 
           <div className={styles.ctaGroup}>
-            <button
+            <a
               id="view-projects-btn"
               className="btn-primary"
-              onClick={() => document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' })}
+              href="https://lit-bi.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               View Projects →
-            </button>
+            </a>
             <a id="contact-btn" href="mailto:atonu.zahin@gmail.com" className="btn-secondary">
               Let&apos;s Connect ↗
             </a>
