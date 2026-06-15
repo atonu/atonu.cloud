@@ -46,10 +46,11 @@ export default function HeroSection({ id }: { id?: string }) {
         {/* Left: Text content */}
         <div className={styles.heroContent}>
 
-          <div className={styles.availableBadge}>
+          {/* available for hire temporarily removed */}
+          {/* <div className={styles.availableBadge}>
             <span className="glow-dot" />
             <span>Available for hire</span>
-          </div>
+          </div> */}
 
           <p className={styles.greeting}>Hi, I&apos;m</p>
           <h1 className={styles.name}>
