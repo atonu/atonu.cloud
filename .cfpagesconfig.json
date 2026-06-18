@@ -1,8 +1,9 @@
 {
   "$schema": "https://developers.cloudflare.com/pages/platform/build-configuration/#configuration-schema",
   "build": {
-    "command": "npm run build",
+    "command": "npx @cloudflare/next-on-pages",
     "cwd": "/",
-    "outputDirectory": "out"
-  }
+    "outputDirectory": ".vercel/output/static"
+  },
+  "compatibility_flags": ["nodejs_compat"]
 }

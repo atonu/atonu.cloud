@@ -1,71 +1,87 @@
-# Quick Deployment Reference
+# Quick Cloudflare Pages Deployment
+## Deploy Next.js to www.atonu.online
 
-## ⚡ TL;DR - Deploy in 5 Minutes
+> **Windows ARM64 Note:** Local Cloudflare builds won't work on your machine, but deployment via GitHub works perfectly! Cloudflare builds on their servers (x64 Linux).
+
+---
+
+## ⚡ Deploy in 3 Steps
 
 ### 1️⃣ Push to GitHub
 ```bash
 git add .
 git commit -m "Configure for Cloudflare Pages"
-git push origin main
+git push origin master
 ```
 
-### 2️⃣ Cloudflare Setup
-1. Go to: https://dash.cloudflare.com/
+### 2️⃣ Create Cloudflare Pages Project
+1. Go to https://dash.cloudflare.com/
 2. **Workers & Pages** → **Create application** → **Pages** → **Connect to Git**
-3. Select your repo
-4. Build settings:
-   - **Framework preset:** **None** ⚠️ (NOT "Next.js")
-   - Build command: `npm run build`
-   - Output directory: `out`
-5. **Save and Deploy**
+3. Select your repository
+4. **Build settings:**
+   - **Framework preset:** Next.js (Advanced) ⚡
+   - **Build command:** `npx @cloudflare/next-on-pages`
+   - **Output directory:** `.vercel/output/static`
+5. Click **"Save and Deploy"**
 
 ### 3️⃣ Add Custom Domain
-1. In Pages project → **Custom domains** → **Set up a custom domain**
-2. Enter: `www.atonu.online`
-3. Click **Activate domain**
+1. In your Pages project → **Custom domains**
+2. Add: `www.atonu.online`
+3. Click **"Activate domain"**
 
-### 4️⃣ Done! 🎉
-- Your site will be live at: `https://www.atonu.online`
-- Automatic HTTPS ✓
-- Auto-deploy on git push ✓
+**Done!** 🎉 Your site will be live at `https://www.atonu.online`
 
 ---
 
-## 📝 Build Settings
+## 🎯 What You Get
 
-| Setting | Value |
-|---------|-------|
-| Framework preset | **None** (NOT Next.js) |
-| Build command | `npm run build` |
-| Output directory | `out` |
-| Node version | 20.18.1 |
-| Framework | Next.js (Static Export) |
+✅ **Full Next.js SSR** - Server components, API routes  
+✅ **Edge Runtime** - 270+ cities globally  
+✅ **Auto HTTPS** - SSL included  
+✅ **Auto-deploy** - Push to GitHub → auto-deploys  
+✅ **Unlimited bandwidth** - Free tier  
 
-## 🔗 Important URLs
+---
 
-- **Cloudflare Dashboard:** https://dash.cloudflare.com/
-- **Pages Docs:** https://developers.cloudflare.com/pages/
-- **Your Site:** https://www.atonu.online (after setup)
+## 🔄 Future Updates
 
-## 🆘 Common Issues
+```bash
+# Make changes
+git add .
+git commit -m "Update site"
+git push origin master
 
-**Build error: "@opennextjs/cloudflare not supported"**
-- **Fix:** Change Framework preset to "None" in Cloudflare Pages settings
-- Go to Settings → Builds & deployments → Edit configurations
-- Set Framework preset to **"None"** instead of "Next.js"
+# Cloudflare auto-deploys! ✅
+```
 
-**Build fails?**
-- Run `npm run build` locally first
-- Check Cloudflare build logs
+---
+
+## 📖 Full Guide
+
+See [CLOUDFLARE-DEPLOY-GUIDE.md](CLOUDFLARE-DEPLOY-GUIDE.md) for complete instructions, troubleshooting, and advanced configuration.
+
+---
+
+## 💻 Local Development
+
+```bash
+npm run dev  # Works fine on ARM64!
+```
+
+Local development works perfectly. Only Cloudflare build tools need x64, but builds happen on Cloudflare's servers, not locally.
+
+---
+
+## 🐛 Common Issues
+
+**Build fails in Cloudflare?**
+- Check build logs in Cloudflare dashboard
+- Ensure framework preset is "Next.js (Advanced)"
 
 **Domain not working?**
 - Wait 2-5 minutes for DNS propagation
-- Check DNS at: https://dnschecker.org/
-
-**Changes not showing?**
-- Clear browser cache (Ctrl+Shift+R)
-- Check latest deployment in Cloudflare Dashboard
+- Check at: https://dnschecker.org/
 
 ---
 
-📖 **Full guide:** See [DEPLOYMENT.md](DEPLOYMENT.md)
+**Need help?** Check the [full deployment guide](CLOUDFLARE-DEPLOY-GUIDE.md).
