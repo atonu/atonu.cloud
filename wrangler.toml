@@ -1,0 +1,12 @@
+name = "atonu-cloud"
+main = "src/index.ts" # Change this to "src/index.js" or your specific entry point if different
+compatibility_date = "2026-06-18"
+
+# Automatically links your apex domain upon a successful deployment
+[[routes]]
+pattern = "atonu.cloud"
+custom_domain = true
+
+[[routes]]
+pattern = "www.atonu.cloud"
+custom_domain = true
