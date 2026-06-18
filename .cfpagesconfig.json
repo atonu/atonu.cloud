@@ -1,0 +1,8 @@
+{
+  "$schema": "https://developers.cloudflare.com/pages/platform/build-configuration/#configuration-schema",
+  "build": {
+    "command": "npm run build",
+    "cwd": "/",
+    "outputDirectory": "out"
+  }
+}
