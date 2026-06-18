@@ -44,3 +44,4 @@ wrangler.toml.local
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+/.open-next
