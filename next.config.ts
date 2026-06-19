@@ -1,9 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  output: 'standalone',
   images: {
     domains: [],
-    unoptimized: false,
+    unoptimized: true,
   },
   transpilePackages: ['three', '@react-three/fiber', '@react-three/drei'],
 };
