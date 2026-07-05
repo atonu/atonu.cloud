@@ -74,9 +74,9 @@ export default function About() {
             </p>
             <div className={styles.aiCardsStack}>
               {[
-                { name: 'BI-Lite', link: 'https://bi-lite-server.vercel.app/', desc: 'Lightweight, high-performance Business Intelligence engine.', bg: '/bi-lite.png' },
+                { name: 'BI-Lite', link: 'https://lit-bi.vercel.app/', desc: 'Lightweight, high-performance Business Intelligence engine.', bg: '/bi-lite.png' },
+                { name: 'Vellora', link: 'https://vellora-fe.vercel.app/', desc: 'State-of-the-art conversational AI interface.', bg: '/vellora.png' },
                 { name: 'Edgetech', link: 'https://edgetech-web.vercel.app/', desc: 'Edge intelligence for real-time sensor processing and control.', bg: '/edgetech.png' },
-                { name: 'Vellora', link: 'https://vellora-fe.vercel.app/', desc: 'State-of-the-art conversational AI interface.', bg: '/vellora.png' }
               ].map((prod, i) => (
                 <a key={i} href={prod.link} target="_blank" rel="noopener noreferrer" className={`card ${styles.aiCard}`} data-hover>
                   {/* ponytail: bg container positioned absolute to avoid affecting layout */}
