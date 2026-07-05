@@ -64,17 +64,31 @@ export default function About() {
 
 
 
-          <div className={styles.contactInfo}>
-            {[
-              { icon: '✉', text: 'atonu.zahin@gmail.com', href: 'mailto:atonu.zahin@gmail.com' },
-              { icon: '📞', text: '+8801760605684', href: 'tel:+8801760605684' },
-              { icon: '🔗', text: 'LinkedIn', href: 'https://linkedin.com/in/ahmed-atonu-23ab08130' },
-            ].map((item, i) => (
-              <a key={i} href={item.href} target={item.href.startsWith('http') ? '_blank' : undefined} rel="noreferrer" className={styles.contactItem}>
-                <span>{item.icon}</span>
-                <span>{item.text}</span>
-              </a>
-            ))}
+          <div id="ai-products" className={styles.aiProductsSection}>
+            <p className="section-label">AI Products</p>
+            <h2 className="section-title">
+              Intelligent <span>Solutions</span>
+            </h2>
+            <p className="section-subtitle">
+              Production-ready intelligence and analytic tools built to scale
+            </p>
+            <div className={styles.aiCardsStack}>
+              {[
+                { name: 'BI-Lite', link: 'https://bi-lite-server.vercel.app/', desc: 'Lightweight, high-performance Business Intelligence engine.', bg: '/bi-lite.png' },
+                { name: 'Edgetech', link: 'https://edgetech-web.vercel.app/', desc: 'Edge intelligence for real-time sensor processing and control.', bg: '/edgetech.png' },
+                { name: 'Vellora', link: 'https://vellora-fe.vercel.app/', desc: 'State-of-the-art conversational AI interface.', bg: '/vellora.png' }
+              ].map((prod, i) => (
+                <a key={i} href={prod.link} target="_blank" rel="noopener noreferrer" className={`card ${styles.aiCard}`} data-hover>
+                  {/* ponytail: bg container positioned absolute to avoid affecting layout */}
+                  <div className={styles.aiCardBg} style={{ backgroundImage: `url(${prod.bg})` }} />
+                  <div className={styles.aiCardHeader}>
+                    <h3 className={styles.aiCardName}>{prod.name}</h3>
+                    <span className={styles.aiCardArrow}>↗</span>
+                  </div>
+                  <p className={styles.aiCardDesc}>{prod.desc}</p>
+                </a>
+              ))}
+            </div>
           </div>
         </div>
 

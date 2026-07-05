@@ -70,9 +70,15 @@ export default function HeroSection({ id }: { id?: string }) {
             <a
               id="view-projects-btn"
               className="btn-primary"
-              href="https://lit-bi.vercel.app/"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#ai-products"
+              onClick={(e) => {
+                e.preventDefault();
+                const el = document.getElementById('ai-products');
+                if (el) {
+                  const targetY = el.getBoundingClientRect().top + window.scrollY;
+                  window.scrollTo({ top: targetY, behavior: 'smooth' });
+                }
+              }}
             >
               View Projects →
             </a>
