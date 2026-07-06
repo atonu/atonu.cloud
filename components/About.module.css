@@ -211,7 +211,7 @@
 .aiCard:hover .aiCardBg {
   opacity: 0.45;
   /* ponytail: full opacity on hover */
-  transform: scale(1.08);
+  transform: scale(1.05);
   /* ponytail: small zoom effect */
 }
 
