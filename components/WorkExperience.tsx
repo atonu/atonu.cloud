@@ -20,7 +20,7 @@ const experiences: Experience[] = [
     role: 'Senior ERP & AI Integrations Engineer',
     company: 'RemoteIntegrity',
     period: '2026/08 — Present',
-    flag: 'US',
+    flag: '🇺🇸',
     bullets: [
       'Building a ERP as SAAS platform',
       'Forward Deployed Engineering',
