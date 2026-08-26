@@ -17,15 +17,15 @@ type Experience = {
 
 const experiences: Experience[] = [
   {
-    role: 'Software Engineer',
-    company: 'ELO',
-    location: 'Dhaka, Bangladesh',
-    period: '2018/10 — 2019/04',
-    periods: ['2026/05 — Present', '2018/10 — 2019/04'],
-    flag: '🇧🇩',
+    role: 'Senior ERP & AI Integrations Engineer',
+    company: 'RemoteIntegrity',
+    period: '2026/08 — Present',
+    flag: 'US',
     bullets: [
-      'Full stack developer for client projects',
-      'Increased flexibility working across different frameworks and infrastructures',
+      'Building a ERP as SAAS platform',
+      'Forward Deployed Engineering',
+      'Integrating with CRM',
+      'Building AI navite solution',
     ],
   },
   {
@@ -42,6 +42,16 @@ const experiences: Experience[] = [
     ],
   },
   {
+    role: 'Operations Manager',
+    company: 'SELISE Group AG',
+    period: '2025/01 — 2025/10',
+    flag: '🇨🇭',
+    bullets: [
+      'Product manager of SaaS product SELISE Signature',
+      'Enhanced RAG-based knowledge base for AI agent',
+    ],
+  },
+  {
     role: 'Software Engineer',
     company: 'SELISE Group AG',
     period: '2019/04 — 2023/11',
@@ -50,16 +60,6 @@ const experiences: Experience[] = [
       'Full-stack development on enterprise SaaS platform',
       'Front-end lead for key product lines',
       'Promoted to Senior Software Engineer and Product Manager',
-    ],
-  },
-  {
-    role: 'Operations Manager',
-    company: 'SELISE Group AG',
-    period: '2025/01 — 2025/10',
-    flag: '🇨🇭',
-    bullets: [
-      'Product manager of SaaS product SELISE Signature',
-      'Enhanced RAG-based knowledge base for AI agent',
     ],
   },
   {
@@ -85,6 +85,18 @@ const experiences: Experience[] = [
       'File management with Amazon S3 via minIO',
       'Created FTP client with Go integrating a German postal service API',
       'Responsive UI developments with SCSS and Flex',
+    ],
+  },
+  {
+    role: 'Software Engineer',
+    company: 'ELO',
+    location: 'Dhaka, Bangladesh',
+    period: '2018/10 — 2019/04',
+    periods: ['2026/05 — Present', '2018/10 — 2019/04'],
+    flag: '🇧🇩',
+    bullets: [
+      'Full stack developer for client projects',
+      'Increased flexibility working across different frameworks and infrastructures',
     ],
   },
 ];
