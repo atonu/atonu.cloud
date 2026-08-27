@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useRef } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import styles from './WorkExperience.module.css';
@@ -101,9 +102,151 @@ const experiences: Experience[] = [
   },
 ];
 
+const WIND_STREAKS = [
+  { top: '12%', left: '10%', width: '380px', phase: 1, delay: '0s' },
+  { top: '22%', left: '30%', width: '450px', phase: 1, delay: '0.05s' },
+  { top: '35%', left: '5%', width: '520px', phase: 1, delay: '0.1s' },
+  { top: '48%', left: '25%', width: '400px', phase: 1, delay: '0.15s' },
+  { top: '62%', left: '15%', width: '480px', phase: 1, delay: '0.08s' },
+  { top: '75%', left: '40%', width: '360px', phase: 1, delay: '0.12s' },
+  { top: '88%', left: '8%', width: '420px', phase: 1, delay: '0.04s' },
+  // Phase 2 streaks (return flyby)
+  { top: '18%', left: '20%', width: '460px', phase: 2, delay: '0.85s' },
+  { top: '30%', left: '5%', width: '540px', phase: 2, delay: '0.9s' },
+  { top: '42%', left: '35%', width: '420px', phase: 2, delay: '0.95s' },
+  { top: '55%', left: '12%', width: '500px', phase: 2, delay: '0.88s' },
+  { top: '68%', left: '28%', width: '480px', phase: 2, delay: '0.92s' },
+  { top: '82%', left: '18%', width: '390px', phase: 2, delay: '0.86s' },
+];
+
+function playSupersonicAudio() {
+  try {
+    const AudioContextClass =
+      window.AudioContext ||
+      (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+    if (!AudioContextClass) return;
+
+    const ctx = new AudioContextClass();
+    if (ctx.state === 'suspended') {
+      ctx.resume();
+    }
+
+    const now = ctx.currentTime;
+
+    // 1. Air Turbulence & Wind Whoosh (Synthesized Filtered Noise)
+    const bufferSize = Math.floor(ctx.sampleRate * 2.3);
+    const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const output = noiseBuffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) {
+      output[i] = Math.random() * 2 - 1;
+    }
+
+    const noiseSource = ctx.createBufferSource();
+    noiseSource.buffer = noiseBuffer;
+
+    const bandpass = ctx.createBiquadFilter();
+    bandpass.type = 'bandpass';
+    bandpass.Q.setValueAtTime(2.2, now);
+    bandpass.frequency.setValueAtTime(200, now);
+    bandpass.frequency.exponentialRampToValueAtTime(3400, now + 0.38);
+    bandpass.frequency.exponentialRampToValueAtTime(320, now + 0.7);
+    bandpass.frequency.setValueAtTime(450, now + 0.85);
+    bandpass.frequency.exponentialRampToValueAtTime(3900, now + 1.25);
+    bandpass.frequency.exponentialRampToValueAtTime(140, now + 2.05);
+
+    const noiseGain = ctx.createGain();
+    noiseGain.gain.setValueAtTime(0.0001, now);
+    noiseGain.gain.exponentialRampToValueAtTime(0.65, now + 0.28);
+    noiseGain.gain.exponentialRampToValueAtTime(0.04, now + 0.68);
+    noiseGain.gain.exponentialRampToValueAtTime(0.75, now + 1.22);
+    noiseGain.gain.exponentialRampToValueAtTime(0.0001, now + 2.1);
+
+    noiseSource.connect(bandpass);
+    bandpass.connect(noiseGain);
+    noiseGain.connect(ctx.destination);
+    noiseSource.start(now);
+    noiseSource.stop(now + 2.2);
+
+    // 2. Sub-Bass Sonic Boom Pulse
+    const osc = ctx.createOscillator();
+    osc.type = 'sawtooth';
+    osc.frequency.setValueAtTime(160, now);
+    osc.frequency.exponentialRampToValueAtTime(42, now + 0.45);
+    osc.frequency.setValueAtTime(135, now + 0.85);
+    osc.frequency.exponentialRampToValueAtTime(32, now + 1.8);
+
+    const lowpass = ctx.createBiquadFilter();
+    lowpass.type = 'lowpass';
+    lowpass.frequency.setValueAtTime(380, now);
+    lowpass.frequency.exponentialRampToValueAtTime(65, now + 0.5);
+    lowpass.frequency.setValueAtTime(340, now + 0.9);
+    lowpass.frequency.exponentialRampToValueAtTime(55, now + 1.85);
+
+    const oscGain = ctx.createGain();
+    oscGain.gain.setValueAtTime(0.0001, now);
+    oscGain.gain.exponentialRampToValueAtTime(0.48, now + 0.15);
+    oscGain.gain.exponentialRampToValueAtTime(0.01, now + 0.55);
+    oscGain.gain.exponentialRampToValueAtTime(0.38, now + 1.15);
+    oscGain.gain.exponentialRampToValueAtTime(0.0001, now + 2.05);
+
+    osc.connect(lowpass);
+    lowpass.connect(oscGain);
+    oscGain.connect(ctx.destination);
+    osc.start(now);
+    osc.stop(now + 2.15);
+  } catch {
+    // Graceful fallback if Web Audio is unsupported
+  }
+}
+
 export default function WorkExperience() {
+  const [isFlying, setIsFlying] = useState(false);
+  const flightTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  const handleSupermanClick = () => {
+    if (isFlying) return;
+    setIsFlying(true);
+    playSupersonicAudio();
+
+    if (flightTimerRef.current) {
+      clearTimeout(flightTimerRef.current);
+    }
+    flightTimerRef.current = setTimeout(() => {
+      setIsFlying(false);
+    }, 2150);
+  };
+
   return (
     <section id="experience" className={styles.expSection}>
+      {/* Visual Wind & Speed Effects Overlay */}
+      <div className={`${styles.windOverlay} ${isFlying ? styles.flying : ''}`}>
+        {isFlying && (
+          <>
+            {WIND_STREAKS.map((streak, idx) => (
+              <div
+                key={idx}
+                className={`${styles.windStreak} ${streak.phase === 1 ? styles.windPhase1 : styles.windPhase2}`}
+                style={{
+                  top: streak.top,
+                  left: streak.left,
+                  width: streak.width,
+                  animationDelay: streak.delay,
+                }}
+              />
+            ))}
+            {/* Sonic Boom Rings */}
+            <div
+              className={`${styles.sonicShockwave} ${styles.sonicTakeoff}`}
+              style={{ top: '65%', left: '25%' }}
+            />
+            <div
+              className={`${styles.sonicShockwave} ${styles.sonicLanding}`}
+              style={{ top: '65%', left: '25%' }}
+            />
+          </>
+        )}
+      </div>
+
       <div className={styles.expLayout}>
         {/* LEFT: Sticky panel with title and image */}
         <div className={styles.stickySide}>
@@ -129,15 +272,24 @@ export default function WorkExperience() {
             </div>
 
             {/* Superman Avatar */}
-            <div className={styles.supermanWrap}>
+            <div
+              className={`${styles.supermanWrap} ${isFlying ? styles.isFlyingWrap : ''}`}
+              onClick={handleSupermanClick}
+              title="Click Superman to launch supersonic flight!"
+              style={{ cursor: isFlying ? 'default' : 'pointer' }}
+            >
               <Image
                 src="/avatars/superman.png"
                 alt="Atonu as Superman"
                 width={350}
                 height={350}
-                className={styles.supermanImg}
+                className={`${styles.supermanImg} ${isFlying ? styles.supermanFlying : ''}`}
               />
-              <div className={styles.supermanBadge}>⚡ Super Engineer!</div>
+              <div
+                className={`${styles.supermanBadge} ${isFlying ? styles.supermanBadgeFlying : ''}`}
+              >
+                {isFlying ? '💨 Zooming!' : '⚡ Super Engineer!'}
+              </div>
             </div>
           </div>
         </div>
