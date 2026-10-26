@@ -18,7 +18,7 @@ type Experience = {
 
 const experiences: Experience[] = [
   {
-    role: 'Senior ERP & AI Integrations Engineer',
+    role: 'Senior ERP & AI Integration Engineer',
     company: 'RemoteIntegrity',
     period: '2026/08 — Present',
     flag: '🇺🇸',
