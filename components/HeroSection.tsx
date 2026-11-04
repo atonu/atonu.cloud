@@ -17,9 +17,9 @@ export default function HeroSection({ id }: { id?: string }) {
   const rotateX = useTransform(smoothY, [-0.5, 0.5], ["1deg", "-1deg"]);
   const rotateY = useTransform(smoothX, [-0.5, 0.5], ["-1deg", "1deg"]);
   const skewX = useTransform(smoothX, [-0.5, 0.5], ["-.5deg", ".5deg"]);
-  const backgroundRotateX = useTransform(smoothY, [-0.5, 0.5], ["1.25deg", "-1.25deg"]);
-  const backgroundRotateY = useTransform(smoothX, [-0.5, 0.5], ["-1.25deg", "1.25deg"]);
-  const backgroundRotateZ = useTransform(smoothX, [-0.5, 0.5], ["-0.55deg", "0.55deg"]);
+  const backgroundRotateX = useTransform(smoothY, [-0.5, 0.5], ["-1.25deg", "1.25deg"]);
+  const backgroundRotateY = useTransform(smoothX, [-0.5, 0.5], ["1.25deg", "-1.25deg"]);
+  const backgroundSkewX = useTransform(smoothX, [-0.5, 0.5], [".5deg", "-.5deg"]);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -50,7 +50,7 @@ export default function HeroSection({ id }: { id?: string }) {
               : {
                 rotateX: backgroundRotateX,
                 rotateY: backgroundRotateY,
-                rotateZ: backgroundRotateZ,
+                skewX: backgroundSkewX,
                 transformStyle: 'preserve-3d',
               }
           }

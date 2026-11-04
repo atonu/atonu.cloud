@@ -19,6 +19,7 @@
   grid-template-columns: 1fr 1fr;
   align-items: stretch;
   isolation: isolate;
+  perspective: 1000px;
   /* Stretch to full height */
 }
 
@@ -31,8 +32,13 @@
   overflow: hidden;
   transform-origin: center;
   will-change: transform;
+  transition: opacity 0.3s ease;
   -webkit-mask-image: radial-gradient(ellipse 72% 68% at 50% 50%, black 18%, rgba(0, 0, 0, 0.72) 48%, transparent 82%);
   mask-image: radial-gradient(ellipse 72% 68% at 50% 50%, black 18%, rgba(0, 0, 0, 0.72) 48%, transparent 82%);
+}
+
+:global([data-theme="light"]) .heroBackgroundImage {
+  opacity: 0.17;
 }
 
 .heroBackgroundPhoto {
@@ -232,6 +238,12 @@
   object-fit: contain;
   object-position: center;
   padding: 150px;
+}
+
+@media (min-width: 1101px) and (max-width: 1440px) {
+  .heroStaticImage {
+    transform: scale(0.8);
+  }
 }
 
 /* ── RESPONSIVE ── */
