@@ -2,10 +2,11 @@
 
 import Image from 'next/image';
 import { useEffect } from 'react';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from 'framer-motion';
 import styles from './Hero.module.css';
 
 export default function HeroSection({ id }: { id?: string }) {
+  const reduceMotion = useReducedMotion();
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -16,6 +17,9 @@ export default function HeroSection({ id }: { id?: string }) {
   const rotateX = useTransform(smoothY, [-0.5, 0.5], ["1deg", "-1deg"]);
   const rotateY = useTransform(smoothX, [-0.5, 0.5], ["-1deg", "1deg"]);
   const skewX = useTransform(smoothX, [-0.5, 0.5], ["-.5deg", ".5deg"]);
+  const backgroundRotateX = useTransform(smoothY, [-0.5, 0.5], ["1.25deg", "-1.25deg"]);
+  const backgroundRotateY = useTransform(smoothX, [-0.5, 0.5], ["-1.25deg", "1.25deg"]);
+  const backgroundRotateZ = useTransform(smoothX, [-0.5, 0.5], ["-0.55deg", "0.55deg"]);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -37,6 +41,29 @@ export default function HeroSection({ id }: { id?: string }) {
     <section id={id} className={styles.hero}>
       {/* Sticky hero background */}
       <div className={styles.heroSticky}>
+        <motion.div
+          className={styles.heroBackgroundImage}
+          aria-hidden="true"
+          style={
+            reduceMotion
+              ? undefined
+              : {
+                rotateX: backgroundRotateX,
+                rotateY: backgroundRotateY,
+                rotateZ: backgroundRotateZ,
+                transformStyle: 'preserve-3d',
+              }
+          }
+        >
+          <Image
+            src="/avatars/hero-bg.png"
+            alt=""
+            fill
+            sizes="100vw"
+            priority
+            className={styles.heroBackgroundPhoto}
+          />
+        </motion.div>
         {/* Download CV button top right (furthest to right) */}
         <a href="/Atonu_Ahmed_Resume.pdf" download="Atonu_Ahmed_Resume.pdf" id="download-cv" className={styles.downloadCvBtn} aria-label="Download CV">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7,10 12,15 17,10" /><line x1="12" y1="15" x2="12" y2="3" /></svg>
