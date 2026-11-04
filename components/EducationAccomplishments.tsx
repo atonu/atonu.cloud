@@ -53,7 +53,7 @@ export default function EducationAccomplishments() {
               transition={{ duration: 0.7, delay: 0.3 }}
             >
               <Image
-                src="/avatars/graduation.png"
+                src="/avatars/graduation.webp"
                 alt="Atonu peeking in"
                 width={1080}
                 height={1200}

@@ -11,14 +11,14 @@ const testimonials = [
     role: 'AI Execution Partner | From clarity to AI that works | Building trusted AI systems for real business outcomes',
     date: 'June 13, 2023, Ahmed was Marco\'s client',
     text: 'I had the pleasure of working closely with Ahmed over the past years. His deep technical expertise, proactive approach, and strong problem-solving skills have consistently added real value to our projects. Beyond his professional qualities, his collaborative spirit made every challenge easier to tackle. Highly recommended.',
-    image: '/avatars/marco.jpg',
+    image: '/avatars/marco.webp',
   },
   {
     name: 'MD. RAIHAN MAHAMUD',
     role: 'Senior Software Engineer at SELISE Digital Platforms',
     date: 'August 17, 2024, MD. RAIHAN worked with Ahmed on the same team',
     text: 'I had the opportunity to work closely with Ahmed Atonu when he served as a Software Engineer on our team. I valued his expertise, especially in frontend-backend integration and ensuring best practices were followed. He consistently delivered optimized solutions and demonstrated outstanding proficiency in CSS, making our web interfaces both visually appealing and highly functional.\n\nHis attention to detail and thorough testing of the frontend components helped us identify and resolve issues early on. He was proactive in reporting any concerns and collaborating effectively to ensure smooth integration across the stack....',
-    image: '/avatars/raihan.jpg',
+    image: '/avatars/raihan.webp',
   }
 ];
 

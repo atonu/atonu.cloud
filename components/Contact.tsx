@@ -137,7 +137,7 @@ export default function Contact() {
         {/* Avatar */}
         <div className={styles.contactAvatar}>
           <Image
-            src="/avatars/hero.png"
+            src="/avatars/hero.webp"
             alt="Atonu Ahmed"
             width={540}
             height={600}

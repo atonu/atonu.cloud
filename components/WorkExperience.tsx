@@ -260,7 +260,7 @@ export default function WorkExperience() {
               style={{ cursor: isFlying ? 'default' : 'pointer' }}
             >
               <Image
-                src="/avatars/superman.png"
+                src="/avatars/superman.webp"
                 alt="Atonu as Superman"
                 width={350}
                 height={350}

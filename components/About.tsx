@@ -40,7 +40,7 @@ export default function About() {
             transition={{ duration: 0.65 }}
           >
             <Image
-              src="/avatars/about.png"
+              src="/avatars/about.webp"
               alt="Atonu Ahmed"
               width={400}
               height={350}
@@ -126,9 +126,9 @@ export default function About() {
             </motion.p>
             <div className={styles.aiCardsStack}>
               {[
-                { name: 'Edgetech', link: 'https://edgetech.com.bd/', desc: 'Edge intelligence for real-time sensor processing and control.', bg: '/edgetech.png' },
-                { name: 'BI-Lite', link: 'https://lit-bi.vercel.app/', desc: 'Lightweight, high-performance Business Intelligence engine.', bg: '/bi-lite.png' },
-                { name: 'Vellora', link: 'https://vellora-fe.vercel.app/', desc: 'State-of-the-art conversational AI interface.', bg: '/vellora.png' },
+                { name: 'Edgetech', link: 'https://edgetech.com.bd/', desc: 'Edge intelligence for real-time sensor processing and control.', bg: '/edgetech.webp' },
+                { name: 'BI-Lite', link: 'https://lit-bi.vercel.app/', desc: 'Lightweight, high-performance Business Intelligence engine.', bg: '/bi-lite.webp' },
+                { name: 'Vellora', link: 'https://vellora-fe.vercel.app/', desc: 'State-of-the-art conversational AI interface.', bg: '/vellora.webp' },
               ].map((prod, i) => (
                 <motion.a
                   key={prod.name}

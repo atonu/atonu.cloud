@@ -52,7 +52,7 @@ function Desk() {
 }
 
 function Monitors() {
-  const rickTexture = useTexture('/avatars/mario.png');
+  const rickTexture = useTexture('/avatars/mario.webp');
 
   return (
     <group position={[0.3, -0.12, -0.8]}>

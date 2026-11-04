@@ -148,7 +148,7 @@ export default function HeroSection({ id }: { id?: string }) {
             }}
           >
             <Image
-              src="/avatars/hero-main.png"
+              src="/avatars/hero-main.webp"
               alt="Atonu Ahmed avatar"
               fill
               className={styles.heroStaticImage}

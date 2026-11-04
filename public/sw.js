@@ -44,8 +44,7 @@ self.addEventListener('fetch', (event) => {
     url.pathname.startsWith('/icons/') ||
     url.pathname.startsWith('/splash/') ||
     url.pathname.startsWith('/fonts/') ||
-    url.pathname.endsWith('.png') ||
-    url.pathname.endsWith('.jpg') ||
+    url.pathname.endsWith('.webp') ||
     url.pathname.endsWith('.svg') ||
     url.pathname.endsWith('.ico') ||
     url.pathname.endsWith('.css') ||
