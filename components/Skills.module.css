@@ -195,9 +195,17 @@
   .skillsGrid {
     margin-bottom: 16px;
   }
-  .bars { gap: 16px; }
+  .bars { gap: 8px 9px; }
   .skillChip {
-    padding: 16px 20px;
+    gap: 6px;
+    padding: 6px 12px;
+  }
+  .chipDot {
+    width: 5px;
+    height: 5px;
+  }
+  .chipName {
+    font-size: 0.615rem;
   }
 }
 
