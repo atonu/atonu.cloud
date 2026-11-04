@@ -56,7 +56,7 @@ export default function HeroSection({ id }: { id?: string }) {
           }
         >
           <Image
-            src="/avatars/hero-bg.png"
+            src="/avatars/hero-bg.webp"
             alt=""
             fill
             sizes="100vw"
