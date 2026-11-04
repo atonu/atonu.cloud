@@ -108,7 +108,7 @@ export default function Skills() {
         <div className={styles.skillsInner}>
           <p className="section-label">Technical Expertise</p>
           <h2 className="section-title">Skills &amp; <span>Technologies</span></h2>
-          <p className="section-subtitle">A diverse toolkit built over 7+ years of real-world engineering</p>
+          <p className="section-subtitle">A diverse toolkit built over 8+ years of real-world engineering</p>
 
           <div className={styles.skillsGrid}>
             <div className={styles.ringsSection}>

@@ -1,3 +1,6 @@
+'use client';
+
+import { motion, useReducedMotion } from 'framer-motion';
 import styles from './AIOrchestration.module.css';
 
 const agents = [
@@ -16,30 +19,56 @@ const capabilities = [
 ];
 
 export default function AIOrchestration() {
+  const reduceMotion = useReducedMotion();
+
   return (
     <section id="ai" className={`section ${styles.ai}`}>
       <div className="section-inner">
-        <h2 className="section-title">I orchestrate AI, <span>and stay accountable for it</span></h2>
-        <p className="section-subtitle">
+        <motion.h2
+          className="section-title"
+          initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.55 }}
+        >
+          I orchestrate AI, <span>and stay accountable for it</span>
+        </motion.h2>
+        <motion.p
+          className="section-subtitle"
+          initial={reduceMotion ? { opacity: 0 } : { opacity: 0, x: 32 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.55, delay: 0.08 }}
+        >
           I design the system around the model: who plans, who builds, who checks, and where a human must decide. That is what makes AI output safe to ship.
-        </p>
+        </motion.p>
         <figure className={styles.flow} aria-label="AI orchestration workflow">
-          <div className={styles.node}><strong>You and the client</strong><span>Goal, context, constraints</span></div>
+          <motion.div className={styles.node} initial={reduceMotion ? { opacity: 0 } : { opacity: 0, x: -48 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
+            <strong>You and the client</strong><span>Goal, context, constraints</span>
+          </motion.div>
           <span className={styles.link} aria-hidden="true" />
-          <div className={`${styles.node} ${styles.hub}`}><strong>Orchestrator</strong><span>Plans, routes, merges, keeps memory and rules</span></div>
+          <motion.div className={`${styles.node} ${styles.hub}`} initial={reduceMotion ? { opacity: 0, scale: 0.94 } : { opacity: 0, y: 32, scale: 0.94 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.55, delay: 0.08 }}>
+            <strong>Orchestrator</strong><span>Plans, routes, merges, keeps memory and rules</span>
+          </motion.div>
           <span className={styles.link} aria-hidden="true" />
           <ol className={styles.agents}>
             {agents.map((a, i) => (
-              <li key={a.name}><b>{i + 1}. {a.name}</b><span>{a.job}</span></li>
+              <motion.li key={a.name} initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: i % 2 === 0 ? 32 : -32 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.45, delay: i * 0.07 }}>
+                <b>{i + 1}. {a.name}</b><span>{a.job}</span>
+              </motion.li>
             ))}
           </ol>
           <span className={styles.link} aria-hidden="true" />
-          <div className={styles.node}><strong>Human gate</strong><span>Review, approve, release</span></div>
+          <motion.div className={styles.node} initial={reduceMotion ? { opacity: 0 } : { opacity: 0, x: 48 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
+            <strong>Human gate</strong><span>Review, approve, release</span>
+          </motion.div>
           <figcaption>Failed checks loop back to the Builder. Nothing ships without the human gate.</figcaption>
         </figure>
         <dl className={styles.caps}>
-          {capabilities.map((c) => (
-            <div key={c.t}><dt>{c.t}</dt><dd>{c.d}</dd></div>
+          {capabilities.map((c, i) => (
+            <motion.div key={c.t} initial={reduceMotion ? { opacity: 0 } : { opacity: 0, x: i % 2 === 0 ? -40 : 40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.55, delay: i * 0.06 }}>
+              <dt>{c.t}</dt><dd>{c.d}</dd>
+            </motion.div>
           ))}
         </dl>
       </div>

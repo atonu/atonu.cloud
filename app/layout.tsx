@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Atonu Ahmed — Senior Software Engineer & Product Manager",
     description:
-      "7+ years building full-stack SaaS products, microservices, and elegant digital experiences.",
+      "8+ years building full-stack SaaS products, microservices, and elegant digital experiences.",
     type: "website",
     url: "https://www.atonu.online",
     siteName: "Atonu Ahmed Portfolio",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Atonu Ahmed — Senior Software Engineer & Product Manager",
     description:
-      "7+ years building full-stack SaaS products, microservices, and elegant digital experiences.",
+      "8+ years building full-stack SaaS products, microservices, and elegant digital experiences.",
     images: ["/avatars/about.png"],
   },
   manifest: "/manifest.json",

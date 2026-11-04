@@ -16,7 +16,7 @@ import About from '@/components/About';
 import Skills from '@/components/Skills';
 import Impact from '@/components/Impact';
 import AIOrchestration from '@/components/AIOrchestration';
-import Projects from '@/components/Projects';
+import Cases from '@/components/Projects';
 
 import { useState, useRef, useEffect } from 'react';
 
@@ -74,10 +74,6 @@ export default function Home() {
 
             <Impact />
             <div className="divider" />
-            <AIOrchestration />
-            <div className="divider" />
-            <Projects />
-            <div className="divider" />
 
             <LazySection id="skills" minHeight="160vh">
               <Skills />
@@ -85,6 +81,10 @@ export default function Home() {
 
             <div className="divider" />
             <WorkExperience />
+            <div className="divider" />
+            <AIOrchestration />
+            <div className="divider" />
+            <Cases />
             <div className="divider" />
             <Testimonials />
             <div className="divider" />

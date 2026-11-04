@@ -1,3 +1,6 @@
+'use client';
+
+import { motion, useReducedMotion } from 'framer-motion';
 import styles from './Projects.module.css';
 
 const cases = [
@@ -8,20 +11,27 @@ const cases = [
   { title: 'ERP as a SaaS, AI-native', role: 'Senior ERP and AI Integration Engineer, forward deployed', problem: 'Clients need ERP that fits how they really work, connected to their CRM, with AI built in.', approach: ['Embed with the client and map real workflows before designing', 'Multi-tenant SaaS core with CRM integration points', 'AI features designed in from the start, with human approval steps'], decision: 'Own delivery end to end, so the client has one accountable engineer.', outcome: 'In progress at Remoteintegrity (2026 to present).', stack: ['TypeScript', 'ERP', 'CRM integration', 'AI agents'] },
 ];
 
-const products = [
-  { name: 'Edgetech', link: 'https://edgetech.com.bd/', desc: 'Edge intelligence for real-time sensor processing and control.' },
-  { name: 'BI-Lite', link: 'https://lit-bi.vercel.app/', desc: 'Lightweight business intelligence engine.' },
-  { name: 'Vellora', link: 'https://vellora-fe.vercel.app/', desc: 'Conversational AI interface.' },
-];
+export default function Cases() {
+  const reduceMotion = useReducedMotion();
 
-export default function Projects() {
   return (
-    <section id="projects" className="section">
+    <section id="cases" className="section">
       <div className="section-inner">
-        <h2 className="section-title">Work, told as <span>decisions</span></h2>
-        <p className="section-subtitle">Each case shows the problem, how I planned and designed it, the trade-off I chose, and what changed.</p>
-        {cases.map((c) => (
-          <article key={c.title} className={styles.case}>
+        <motion.h2 className="section-title" initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -32 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.25 }} transition={{ duration: 0.55 }}>
+          Cases: work told as <span>decisions</span>
+        </motion.h2>
+        <motion.p className="section-subtitle" initial={reduceMotion ? { opacity: 0 } : { opacity: 0, x: -32 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.25 }} transition={{ duration: 0.55, delay: 0.08 }}>
+          Each case shows the problem, how I planned and designed it, the trade-off I chose, and what changed.
+        </motion.p>
+        {cases.map((c, i) => (
+          <motion.article
+            key={c.title}
+            className={styles.case}
+            initial={reduceMotion ? { opacity: 0 } : { opacity: 0, x: i % 2 === 0 ? -48 : 48, y: 24 }}
+            whileInView={{ opacity: 1, x: 0, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.58, delay: i * 0.04 }}
+          >
             <header><h3>{c.title}</h3><p className={styles.role}>{c.role}</p></header>
             <div className={styles.body}>
               <p><b>Problem.</b> {c.problem}</p>
@@ -30,14 +40,8 @@ export default function Projects() {
               <p className={styles.outcome}><b>Outcome.</b> {c.outcome}</p>
               <p className={styles.stack}>{c.stack.join(', ')}</p>
             </div>
-          </article>
+          </motion.article>
         ))}
-        <h3 className={styles.sub}>Products I built and run</h3>
-        <ul className={styles.products}>
-          {products.map((p) => (
-            <li key={p.name}><a href={p.link} target="_blank" rel="noopener noreferrer"><b>{p.name}</b><span>{p.desc}</span></a></li>
-          ))}
-        </ul>
       </div>
     </section>
   );

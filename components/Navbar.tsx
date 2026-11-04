@@ -9,9 +9,9 @@ const navItems = [
   { id: 'about', Icon: User, label: 'About' },
   { id: 'impact', Icon: TrendingUp, label: 'Impact' },
   { id: 'skills', Icon: Code2, label: 'Skills' },
-  { id: 'ai', Icon: Bot, label: 'AI' },
-  { id: 'projects', Icon: FolderKanban, label: 'Projects' },
   { id: 'experience', Icon: Briefcase, label: 'Experience' },
+  { id: 'ai', Icon: Bot, label: 'AI' },
+  { id: 'cases', Icon: FolderKanban, label: 'Cases' },
   { id: 'testimonials', Icon: MessageSquare, label: 'Testimonials' },
   { id: 'hobbies', Icon: Sparkles, label: 'Hobbies' },
   { id: 'education', Icon: GraduationCap, label: 'Education' },
@@ -32,32 +32,31 @@ export default function Navbar() {
       setIsLight(true);
     }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !isClicking.current) {
-            setActive(entry.target.id);
-          }
-        });
-      },
-      { rootMargin: '-40% 0px -55% 0px' }
-    );
-
-    navItems.forEach(({ id }) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
-
+    let frame = 0;
     const handleScroll = () => {
-      if (window.scrollY < 100 && !isClicking.current) {
-        setActive('home');
-      }
+      if (isClicking.current) return;
+      if (frame) cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const marker = window.innerHeight * 0.42;
+        let current = 'home';
+
+        for (const { id } of navItems) {
+          if (id === 'home') continue;
+          const el = document.getElementById(id);
+          if (el && el.getBoundingClientRect().top <= marker) {
+            current = id;
+          }
+        }
+
+        setActive(current);
+      });
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
 
     return () => {
-      observer.disconnect();
       window.removeEventListener('scroll', handleScroll);
+      if (frame) cancelAnimationFrame(frame);
       if (clickTimeout.current) clearTimeout(clickTimeout.current);
     };
   }, []);

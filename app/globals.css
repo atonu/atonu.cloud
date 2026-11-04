@@ -584,6 +584,24 @@ img {
   transform: translateY(0) !important;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .card-hidden,
+  .card-visible {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 /* ===== IMAGE HOVER TILT EFFECT (bassohr MWxzYBq style) ===== */
 [data-hover] {
   transition: transform 0.3s ease, box-shadow 0.3s ease;

@@ -235,7 +235,7 @@ export default function WorkExperience() {
             <p className="section-label">Career Journey</p>
             <h2 className="section-title">Work<br /><span>Experience</span></h2>
             <p className={styles.stickyDesc}>
-              From Dhaka to Europe and the USA — 7+ years building great software across borders
+              From Dhaka to Europe and the USA — 8+ years building great software across borders
             </p>
 
             {/* Stats */}
@@ -243,7 +243,7 @@ export default function WorkExperience() {
               {[
                 { num: '5', label: 'Companies' },
                 { num: '4', label: 'Countries' },
-                { num: '7+', label: 'Years' },
+                { num: '8+', label: 'Years' },
               ].map((s) => (
                 <div key={s.label} className={styles.expStat}>
                   <div className={styles.expStatNum}>{s.num}</div>

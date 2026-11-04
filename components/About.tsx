@@ -57,12 +57,36 @@ export default function About() {
             </div>
 
             <div className={styles.experienceBadge}>
-              <span className={styles.expNum}>7+</span>
+              <span className={styles.expNum}>8+</span>
               <span className={styles.expText}>Years Exp.</span>
             </div>
           </div>
 
-
+          <div id="ai-products" className={styles.aiProductsSection}>
+            <p className="section-label">AI Products</p>
+            <h2 className="section-title">
+              Intelligent <span>Solutions</span>
+            </h2>
+            <p className="section-subtitle">
+              Production-ready intelligence and analytic tools built to scale
+            </p>
+            <div className={styles.aiCardsStack}>
+              {[
+                { name: 'Edgetech', link: 'https://edgetech.com.bd/', desc: 'Edge intelligence for real-time sensor processing and control.', bg: '/edgetech.png' },
+                { name: 'BI-Lite', link: 'https://lit-bi.vercel.app/', desc: 'Lightweight, high-performance Business Intelligence engine.', bg: '/bi-lite.png' },
+                { name: 'Vellora', link: 'https://vellora-fe.vercel.app/', desc: 'State-of-the-art conversational AI interface.', bg: '/vellora.png' },
+              ].map((prod) => (
+                <a key={prod.name} href={prod.link} target="_blank" rel="noopener noreferrer" className={`card ${styles.aiCard}`} data-hover>
+                  <div className={styles.aiCardBg} style={{ backgroundImage: `url(${prod.bg})` }} />
+                  <div className={styles.aiCardHeader}>
+                    <h3 className={styles.aiCardName}>{prod.name}</h3>
+                    <span className={styles.aiCardArrow}>↗</span>
+                  </div>
+                  <p className={styles.aiCardDesc}>{prod.desc}</p>
+                </a>
+              ))}
+            </div>
+          </div>
 
         </div>
 
@@ -73,7 +97,7 @@ export default function About() {
             Crafting <span>Digital Experiences</span> with Passion
           </h2>
           <p className={styles.bio}>
-            I&apos;m a Senior Software Engineer and Product Manager with over 7 years of experience
+            I&apos;m a Senior Software Engineer and Product Manager with over 8 years of experience
             building full-stack SaaS platforms and microservices architecture. Based in Dhaka,
             Bangladesh, I specialize in creating high-performance, scalable systems.
           </p>
