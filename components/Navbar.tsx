@@ -18,7 +18,7 @@ const navItems = [
   { id: 'contact', Icon: Mail, label: 'Contact' },
 ];
 
-const mobileNavIds = new Set(['home', 'skills', 'experience', 'cases', 'education', 'contact']);
+const mobileNavIds = new Set(['home', 'skills', 'experience', 'ai', 'education', 'contact']);
 
 export default function Navbar() {
   const [active, setActive] = useState('home');
