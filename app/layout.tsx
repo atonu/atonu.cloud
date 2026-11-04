@@ -4,9 +4,9 @@ import ScrollReveal from "@/components/ScrollReveal";
 import RegisterSW from "@/components/RegisterSW";
 
 export const metadata: Metadata = {
-  title: "Atonu Ahmed — Senior Software Engineer & Product Manager",
+  title: "Atonu Ahmed — Senior Software Engineer & Forward Deployed Engineer",
   description:
-    "Portfolio of Atonu Ahmed — 7+ years building full-stack SaaS products, microservices, and elegant digital experiences. Angular, React, .NET, TypeScript, AWS.",
+    "Atonu Ahmed, Senior Software Engineer and Forward Deployed Engineer. Full-stack and AI integration for SaaS and ERP. 70% sales growth supported, 2 promotions, delivery across Switzerland, Germany and the USA.",
   keywords:
     "Atonu Ahmed, Software Engineer, Product Manager, Full Stack Developer, Angular, React, TypeScript, .NET, SaaS, Dhaka Bangladesh",
   authors: [{ name: "Atonu Ahmed" }],
@@ -82,4 +82,3 @@ export default function RootLayout({
     </html>
   );
 }
-

@@ -5,41 +5,37 @@ import FlyingSkillsGrid from './FlyingSkillsGrid';
 import styles from './Skills.module.css';
 
 const skillStars = [
-  { name: 'Angular', color: '#dd0031' },
-  { name: 'React', color: '#61dafb' },
-  { name: '.NET', color: '#512bd4' },
-  { name: 'NodeJS', color: '#3c873a' },
-  { name: 'Azure', color: '#0078d4' },
-  { name: 'Product Management', color: '#f5a623' },
+  { name: 'Product thinking', color: '#f5a623' },
+  { name: 'Client communication', color: '#61dafb' },
+  { name: 'Technical leadership', color: '#512bd4' },
+  { name: 'AI orchestration', color: '#8b5cf6' },
+  { name: 'Full-stack', color: '#3b82f6' },
+  { name: 'Fast learning', color: '#10b981' },
 ];
 
 const coreSkills = [
-  { name: 'NextJS', level: 90, color: '#f5a623' },
-  { name: 'NestJS', level: 88, color: '#e0234e' },
-  { name: 'RAG', level: 85, color: '#a855f7' },
-  { name: 'SOLID design principle', level: 92, color: '#3b82f6' },
-  { name: 'Design Pattern', level: 90, color: '#10b981' },
-  { name: 'MongoDB', level: 85, color: '#47a248' },
-  { name: 'DevOps', level: 82, color: '#2496ed' },
-  { name: 'Claude code', level: 88, color: '#d97706' },
-  { name: 'Gemini', level: 90, color: '#4285f4' },
-  { name: 'AI Automation', level: 86, color: '#8b5cf6' },
-  { name: 'PWA', level: 88, color: '#5a0fc8' },
-  { name: 'Golang', level: 80, color: '#00add8' },
-  { name: 'Python', level: 84, color: '#3776ab' },
-  { name: 'Blockchain', level: 85, color: '#f5a623' },
-  { name: 'Docker', level: 82, color: '#2496ed' },
-  { name: 'Redis', level: 80, color: '#d82c20' },
-  { name: 'PostgreSQL', level: 86, color: '#336791' },
-  { name: 'CI/CD', level: 85, color: '#208838' },
-  { name: 'C++', level: 78, color: '#00599c' },
-  { name: 'C#', level: 85, color: '#178600' },
-  { name: 'SQL', level: 88, color: '#00bcff' },
-  { name: 'Firebase', level: 85, color: '#ffca28' },
-  { name: 'Amazon S3', level: 84, color: '#ff9900' },
-  { name: 'Sass', level: 88, color: '#cc6699' },
-  { name: 'Tailwind', level: 90, color: '#38bdf8' },
-  { name: 'Grid/Flex', level: 95, color: '#ff5a00' },
+  { name: 'Sub-agent orchestration', color: '#8b5cf6' },
+  { name: 'LLM integration', color: '#a855f7' },
+  { name: 'AI agents', color: '#d97706' },
+  { name: 'Atomic Design', color: '#f5a623' },
+  { name: 'Microservices', color: '#3b82f6' },
+  { name: 'API design', color: '#10b981' },
+  { name: 'Next.js', color: '#38bdf8' },
+  { name: 'RAG', color: '#a855f7' },
+  { name: 'NestJS', color: '#e0234e' },
+  { name: 'SOLID design principle', color: '#3b82f6' },
+  { name: 'Design Pattern', color: '#10b981' },
+  { name: 'MongoDB', color: '#47a248' },
+  { name: 'DevOps', color: '#2496ed' },
+  { name: 'Claude Code', color: '#d97706' },
+  { name: 'Gemini', color: '#4285f4' },
+  { name: 'AI Automation', color: '#8b5cf6' },
+  { name: 'Golang', color: '#00add8' },
+  { name: 'Python', color: '#3776ab' },
+  { name: 'Docker', color: '#2496ed' },
+  { name: 'PostgreSQL', color: '#336791' },
+  { name: 'CI/CD', color: '#208838' },
+  { name: 'Blockchain', color: '#f5a623' },
 ];
 
 function SkillStar({ name }: { name: string; color: string }) {
@@ -134,4 +130,3 @@ export default function Skills() {
     </section>
   );
 }
-

@@ -58,22 +58,22 @@ export default function HeroSection({ id }: { id?: string }) {
             <span className={styles.nameAccent}>Ahmed</span>
           </h1>
           <h2 className={styles.title}>
-            Senior Software Engineer &amp;<br />
-            Product Manager
+            Senior Software Engineer · Forward Deployed Engineer<br />
+            Full-Stack and AI Integration
           </h2>
           <p className={styles.description}>
-            7+ years building full-stack SaaS products,<br />
-            microservices, and elegant digital experiences.
+            7+ years shipping SaaS and AI platforms for teams in Switzerland, Germany and the USA.<br />
+            I own delivery end to end, and I orchestrate AI so it is safe to ship.
           </p>
 
           <div className={styles.ctaGroup}>
             <a
               id="view-projects-btn"
               className="btn-primary"
-              href="#ai-products"
+              href="#projects"
               onClick={(e) => {
                 e.preventDefault();
-                const el = document.getElementById('ai-products');
+                const el = document.getElementById('projects');
                 if (el) {
                   const targetY = el.getBoundingClientRect().top + window.scrollY;
                   window.scrollTo({ top: targetY, behavior: 'smooth' });
@@ -90,10 +90,10 @@ export default function HeroSection({ id }: { id?: string }) {
           {/* Stats Bar */}
           <div className={styles.statsBar}>
             {[
-              { icon: '🧳', value: '7+', label: 'Years Experience', sub: 'Building scalable SaaS products since 2018' },
-              { icon: '◈', value: 'Full-stack &', label: 'Microservices', sub: 'Architecting robust systems that scale' },
-              { icon: '⬡', value: 'SELISE', label: 'Group AG', sub: 'Senior Software Engineer & Product Manager' },
-              { icon: '</>', value: 'TypeScript • .NET', label: 'Angular • React', sub: 'Modern stack for reliable applications' },
+              { icon: '📈', value: '70%', label: 'Sales increase supported', sub: 'Scaled and stabilized a SaaS core' },
+              { icon: '▲', value: '2', label: 'Promotions', sub: 'Engineer to senior and product leadership' },
+              { icon: '◉', value: '4', label: 'Countries', sub: 'Switzerland, Germany, USA and Bangladesh' },
+              { icon: 'AI', value: 'Claude Code, RAG, agents', label: 'AI-native delivery', sub: 'Now: Remoteintegrity, Forward Deployed Engineer' },
             ].map((s, i) => (
               <div key={i} id={`stat-card-${i}`} className={styles.statCard}>
                 <div className={styles.statIcon}>{s.icon}</div>

@@ -1,0 +1,17 @@
+.ai { background: var(--bg-secondary); }
+.flow { display: flex; align-items: stretch; gap: 0; margin: 0 0 72px; flex-wrap: wrap; }
+.flow figcaption { flex-basis: 100%; margin-top: 20px; font-size: 0.82rem; color: var(--text-muted); }
+.node { flex: 0 0 170px; padding: 18px; border: 1px solid var(--border-color); border-radius: 10px; background: var(--bg-card); display: flex; flex-direction: column; gap: 6px; justify-content: center; }
+.node strong { font-family: 'Space Grotesk', sans-serif; color: var(--text-primary); }
+.node span { font-size: 0.78rem; color: var(--text-secondary); line-height: 1.5; }
+.hub { border-color: var(--accent-primary); background: var(--accent-glow); }
+.link { flex: 0 0 28px; align-self: center; height: 2px; background: var(--accent-primary); position: relative; }
+.link::after { content: ''; position: absolute; right: 0; top: -4px; border: 5px solid transparent; border-left: 7px solid var(--accent-primary); border-right: 0; }
+.agents { list-style: none; flex: 1 1 320px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+.agents li { padding: 12px 14px; border-left: 3px solid var(--accent-secondary); background: var(--bg-card); font-size: 0.78rem; color: var(--text-secondary); line-height: 1.5; display: flex; flex-direction: column; gap: 4px; }
+.agents b { color: var(--text-primary); font-family: 'Space Grotesk', sans-serif; font-size: 0.88rem; }
+.caps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px 56px; }
+.caps dt { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; }
+.caps dd { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; max-width: 52ch; }
+@media (max-width: 1024px) { .flow { flex-direction: column; align-items: stretch; } .node { flex-basis: auto; } .link { width: 2px; height: 24px; margin: 0 0 0 24px; } .link::after { right: -4px; top: auto; bottom: 0; border: 5px solid transparent; border-top: 7px solid var(--accent-primary); border-bottom: 0; } .caps { grid-template-columns: 1fr; } }
+@media (max-width: 520px) { .agents { grid-template-columns: 1fr; } }

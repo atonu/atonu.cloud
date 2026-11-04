@@ -23,41 +23,23 @@ const experiences: Experience[] = [
     period: '2026/08 — Present',
     flag: '🇺🇸',
     bullets: [
-      'Building a ERP as SAAS platform',
-      'Forward Deployed Engineering',
-      'Integrating with CRM',
-      'Building AI navite solution',
+      'Forward Deployed Engineer: embed with clients and own production ERP delivery end to end',
+      'Build a SaaS ERP platform with CRM integration and AI-native features',
     ],
   },
   {
-    role: 'Senior Software Engineer',
+    role: 'Software Engineer → Senior Software Engineer → Operations Manager / Product Manager',
     company: 'SELISE Group AG',
-    period: '2023/11 — 2026/04',
+    period: '2019/04 — 2026/04',
     flag: '🇨🇭',
     bullets: [
-      'Engineered scalable distributed SaaS systems ensuring precision for data-intensive platforms',
+      'Scaled and stabilized the core of a SaaS product, supporting a 70% sales increase',
       'Technical manager, client-facing developer and front-end lead of blockchain-based SaaS with smart contracts',
       'Led migration of high-volume telemetry data from primary DB to cloud storage, significantly reducing costs',
       'Engineered LLM for localization capabilities',
       'Maintained clean coding, cache controlling, code reviewing, version controlling',
-    ],
-  },
-  {
-    role: 'Operations Manager',
-    company: 'SELISE Group AG',
-    period: '2025/01 — 2025/10',
-    flag: '🇨🇭',
-    bullets: [
       'Product manager of SaaS product SELISE Signature',
       'Enhanced RAG-based knowledge base for AI agent',
-    ],
-  },
-  {
-    role: 'Software Engineer',
-    company: 'SELISE Group AG',
-    period: '2019/04 — 2023/11',
-    flag: '🇨🇭',
-    bullets: [
       'Full-stack development on enterprise SaaS platform',
       'Front-end lead for key product lines',
       'Promoted to Senior Software Engineer and Product Manager',
@@ -93,7 +75,6 @@ const experiences: Experience[] = [
     company: 'ELO',
     location: 'Dhaka, Bangladesh',
     period: '2018/10 — 2019/04',
-    periods: ['2026/05 — Present', '2018/10 — 2019/04'],
     flag: '🇧🇩',
     bullets: [
       'Full stack developer for client projects',
@@ -260,7 +241,7 @@ export default function WorkExperience() {
             {/* Stats */}
             <div className={styles.expStats}>
               {[
-                { num: '4', label: 'Companies' },
+                { num: '5', label: 'Companies' },
                 { num: '4', label: 'Countries' },
                 { num: '7+', label: 'Years' },
               ].map((s) => (

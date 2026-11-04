@@ -11,13 +11,16 @@ import EducationAccomplishments from '@/components/EducationAccomplishments';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import LazySection from '@/components/LazySection';
+import HeroSection from '@/components/HeroSection';
+import About from '@/components/About';
+import Skills from '@/components/Skills';
+import Impact from '@/components/Impact';
+import AIOrchestration from '@/components/AIOrchestration';
+import Projects from '@/components/Projects';
 
 import { useState, useRef, useEffect } from 'react';
 
 // Dynamic imports for heavy components (SSR disabled)
-const HeroSection = dynamic(() => import('@/components/HeroSection'), { ssr: false });
-const About = dynamic(() => import('@/components/About'), { ssr: false });
-const Skills = dynamic(() => import('@/components/Skills'), { ssr: false });
 const ParallaxBackground = dynamic(() => import('@/components/ParallaxBackground'), { ssr: false });
 
 export default function Home() {
@@ -67,6 +70,13 @@ export default function Home() {
               <About />
             </LazySection>
 
+            <div className="divider" />
+
+            <Impact />
+            <div className="divider" />
+            <AIOrchestration />
+            <div className="divider" />
+            <Projects />
             <div className="divider" />
 
             <LazySection id="skills" minHeight="160vh">

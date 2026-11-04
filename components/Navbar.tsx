@@ -2,12 +2,15 @@
 
 import { useEffect, useState, useRef } from 'react';
 import styles from './Navbar.module.css';
-import { Home, User, Briefcase, Code2, Sparkles, Mail, GraduationCap, MessageSquare } from 'lucide-react';
+import { Home, User, Briefcase, Code2, Sparkles, Mail, GraduationCap, MessageSquare, TrendingUp, Bot, FolderKanban } from 'lucide-react';
 
 const navItems = [
   { id: 'home', Icon: Home, label: 'Home' },
   { id: 'about', Icon: User, label: 'About' },
+  { id: 'impact', Icon: TrendingUp, label: 'Impact' },
   { id: 'skills', Icon: Code2, label: 'Skills' },
+  { id: 'ai', Icon: Bot, label: 'AI' },
+  { id: 'projects', Icon: FolderKanban, label: 'Projects' },
   { id: 'experience', Icon: Briefcase, label: 'Experience' },
   { id: 'testimonials', Icon: MessageSquare, label: 'Testimonials' },
   { id: 'hobbies', Icon: Sparkles, label: 'Hobbies' },

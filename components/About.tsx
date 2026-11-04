@@ -64,32 +64,6 @@ export default function About() {
 
 
 
-          <div id="ai-products" className={styles.aiProductsSection}>
-            <p className="section-label">AI Products</p>
-            <h2 className="section-title">
-              Intelligent <span>Solutions</span>
-            </h2>
-            <p className="section-subtitle">
-              Production-ready intelligence and analytic tools built to scale
-            </p>
-            <div className={styles.aiCardsStack}>
-              {[
-                { name: 'Edgetech', link: 'https://edgetech.com.bd/', desc: 'Edge intelligence for real-time sensor processing and control.', bg: '/edgetech.png' },
-                { name: 'BI-Lite', link: 'https://lit-bi.vercel.app/', desc: 'Lightweight, high-performance Business Intelligence engine.', bg: '/bi-lite.png' },
-                { name: 'Vellora', link: 'https://vellora-fe.vercel.app/', desc: 'State-of-the-art conversational AI interface.', bg: '/vellora.png' },
-              ].map((prod, i) => (
-                <a key={i} href={prod.link} target="_blank" rel="noopener noreferrer" className={`card ${styles.aiCard}`} data-hover>
-                  {/* ponytail: bg container positioned absolute to avoid affecting layout */}
-                  <div className={styles.aiCardBg} style={{ backgroundImage: `url(${prod.bg})` }} />
-                  <div className={styles.aiCardHeader}>
-                    <h3 className={styles.aiCardName}>{prod.name}</h3>
-                    <span className={styles.aiCardArrow}>↗</span>
-                  </div>
-                  <p className={styles.aiCardDesc}>{prod.desc}</p>
-                </a>
-              ))}
-            </div>
-          </div>
         </div>
 
         {/* RIGHT: Text (Sticky) */}
