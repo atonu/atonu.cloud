@@ -1,8 +1,8 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
+import { Suspense, useRef, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { PerspectiveCamera, Float, RoundedBox, Environment, useTexture } from '@react-three/drei';
+import { PerspectiveCamera, Float, RoundedBox, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 
 // ── ROOM COMPONENTS ──────────────────────────────────────────────────────────
@@ -294,8 +294,6 @@ function SmallPlant() {
 
 // ── SCENE WRAPPER WITH MOUSE PARALLAX ────────────────────────────────────────
 
-import { useInView } from 'framer-motion';
-
 function SceneContent() {
   const mouseRef = useRef({ x: 0, y: 0 });
 
@@ -325,14 +323,17 @@ function SceneContent() {
 
 export default function AboutThreeScene() {
   const container = useRef<HTMLDivElement>(null);
-  const isInView = useInView(container, { margin: "200px" }); // Render a bit before it enters
 
   return (
     <div ref={container} style={{ width: '100%', height: '100%' }}>
       <Canvas
-        frameloop={isInView ? 'always' : 'demand'}
+        frameloop="always"
         shadows
         dpr={[1, 3]}
+        fallback={<div />}
+        onCreated={({ gl }) => {
+          gl.setClearColor('#000000', 0);
+        }}
         gl={{
           antialias: true,
           alpha: true,
@@ -342,7 +343,7 @@ export default function AboutThreeScene() {
         }}
         style={{ width: '100%', height: '100%', background: 'transparent' }}
       >
-        <PerspectiveCamera makeDefault position={[4, 3.5, 5]} fov={45} />
+        <PerspectiveCamera makeDefault position={[4, 3.5, 5]} fov={44} />
         <SceneContent />
 
         <ambientLight intensity={0.8} color="#fff5e0" />
@@ -356,17 +357,18 @@ export default function AboutThreeScene() {
         >
           <orthographicCamera attach="shadow-camera" args={[-8, 8, 8, -8]} />
         </directionalLight>
-        <Environment preset="city" />
         <pointLight position={[-3, 3, 2]} intensity={0.4} color="#4f6ef7" />
 
         <Float floatIntensity={0.3} speed={1.5} rotationIntensity={0.1}>
-          <group rotation={[0.1, -0.4, 0]}>
+          <group rotation={[0.12, -0.5, 0]}>
             <Floor />
             <Rug />
             <BackWall />
             <SideWall />
             <Desk />
-            <Monitors />
+            <Suspense fallback={null}>
+              <Monitors />
+            </Suspense>
             <Chair />
             <Bookshelf />
             <Plant />
