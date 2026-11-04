@@ -5,9 +5,9 @@ import styles from './Impact.module.css';
 
 const metrics = [
   { n: '70%', t: 'sales increase', d: 'Scaled and stabilized the core of a SaaS product as lead developer, so growth could happen safely.' },
-  { n: '2', t: 'promotions at SELISE', d: 'Engineer to Senior Engineer, and into Product Manager / Operations Manager.' },
-  { n: '4', t: 'countries delivered for', d: 'Switzerland, Germany, USA and Bangladesh, mostly remote across time zones.' },
-  { n: '8+', t: 'years in production', d: 'SaaS, enterprise, blockchain and AI platforms. Not demos.' },
+  { n: '08+', t: 'years in production', d: 'SaaS, enterprise, blockchain and AI platforms. Not demos.' },
+  { n: '02', t: 'promotions at SELISE', d: 'Engineer to Senior Engineer, and into Product Manager / Operations Manager.' },
+  { n: '04', t: 'countries delivered for', d: 'Switzerland, Germany, USA and Bangladesh, mostly remote across time zones.' },
 ];
 
 const principles = [
