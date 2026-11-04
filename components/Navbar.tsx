@@ -18,6 +18,8 @@ const navItems = [
   { id: 'contact', Icon: Mail, label: 'Contact' },
 ];
 
+const mobileNavIds = new Set(['home', 'skills', 'experience', 'cases', 'education', 'contact']);
+
 export default function Navbar() {
   const [active, setActive] = useState('home');
   const [isLight, setIsLight] = useState(false);
@@ -116,7 +118,10 @@ export default function Navbar() {
       {/* Nav Items */}
       <ul className={styles.navList}>
         {navItems.map(({ id, Icon, label }) => (
-          <li key={id} className={id === 'about' ? styles.hideOnMobile : ''}>
+          <li
+            key={id}
+            className={mobileNavIds.has(id) ? styles.showOnMobile : styles.hideOnMobile}
+          >
             <button
               id={`nav-${id}`}
               className={`${styles.navItem} ${active === id && active !== 'home' ? styles.active : ''}`}

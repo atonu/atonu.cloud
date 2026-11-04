@@ -182,5 +182,6 @@
   .navTooltip { display: none; }
   .separator { display: none; }
   .hideOnMobile { display: none !important; }
+  .showOnMobile { display: flex !important; }
   .themeToggle { width: 44px; height: 44px; min-width: 44px; display: flex; align-items: center; justify-content: center; }
 }
