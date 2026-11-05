@@ -254,8 +254,14 @@
   }
 
   .heroImageContainer {
-    height: 400px;
+    height: 500px;
     order: -1;
+  }
+
+  .heroStaticImage {
+    padding: 20px 40px;
+    object-position: center;
+    transform: scale(1.08);
   }
 
   .heroContent {
