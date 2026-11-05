@@ -8,7 +8,7 @@ export default function Footer() {
           <div className={styles.logo}>A</div>
           <div>
             <div className={styles.name}>Atonu Ahmed</div>
-            <div className={styles.tagline}>Senior Software Engineer & Product Manager</div>
+            <div className={styles.tagline}>Senior Software Engineer & Forward Deployed Engineer</div>
           </div>
         </div>
 

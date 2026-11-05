@@ -73,11 +73,11 @@ export default function HeroSection({ id }: { id?: string }) {
         {/* Left: Text content */}
         <div className={styles.heroContent}>
 
-          {/* available for hire temporarily removed */}
-          {/* <div className={styles.availableBadge}>
+          {/* available for hire temporarily enabled */}
+          <div className={styles.availableBadge}>
             <span className="glow-dot" />
             <span>Available for hire</span>
-          </div> */}
+          </div>
 
           <p className={styles.greeting}>Hi, I&apos;m</p>
           <h1 className={styles.name}>
@@ -86,11 +86,12 @@ export default function HeroSection({ id }: { id?: string }) {
           </h1>
           <h2 className={styles.title}>
             Senior Software Engineer &amp;<br />
-            Product Manager
+            Forward Deployed Engineer
           </h2>
           <p className={styles.description}>
-            8+ years building full-stack SaaS products,<br />
-            microservices, and elegant digital experiences.
+            Senior full-stack engineer with 8+ years delivering scalable software and enterprise solutions across Switzerland,<br />
+            Germany, Bangladesh, and the USA. Promoted twice at SELISE Group AG and led a product associated with a 70% sales increase.<br />
+            Hands-on expertise in AI infrastructure, distributed systems, B2B SaaS, product ownership, and client-facing delivery.
           </p>
 
           <div className={styles.ctaGroup}>

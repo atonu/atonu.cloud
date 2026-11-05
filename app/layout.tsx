@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Atonu Ahmed" }],
   metadataBase: new URL("https://www.atonu.online"),
   openGraph: {
-    title: "Atonu Ahmed — Senior Software Engineer & Product Manager",
+    title: "Atonu Ahmed — Senior Software Engineer & Forward Deployed Engineer",
     description:
       "8+ years building full-stack SaaS products, microservices, and elegant digital experiences.",
     type: "website",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Atonu Ahmed — Senior Software Engineer & Product Manager",
+    title: "Atonu Ahmed — Senior Software Engineer & Forward Deployed Engineer",
     description:
       "8+ years building full-stack SaaS products, microservices, and elegant digital experiences.",
     images: ["/avatars/about.webp"],

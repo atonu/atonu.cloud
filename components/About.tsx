@@ -16,10 +16,10 @@ const ThreeScene = dynamic(() => import('./AboutThreeScene'), {
 });
 
 const highlights = [
-  { icon: '🚀', text: 'Led migration of high-volume telemetry to cloud storage, significantly reducing costs' },
-  { icon: '📈', text: 'Lead developer of a product that increased sales by 70%' },
-  { icon: '🔗', text: 'Technical lead on blockchain-based SaaS with smart contracts' },
-  { icon: '🤖', text: 'Engineered LLM for localization and enhanced RAG-based AI knowledge base' },
+  { icon: '🚀', text: 'Designed high-volume telemetry synchronization to cold storage, significantly reducing costs' },
+  { icon: '📈', text: 'Lead developer of a SaaS product associated with a 70% increase in sales' },
+  { icon: '🔗', text: 'Technical manager and front-end lead for a blockchain SaaS product with smart contracts' },
+  { icon: '🤖', text: 'Built AI-based localization capabilities and RAG-based knowledge systems' },
 ];
 
 export default function About() {
@@ -182,9 +182,10 @@ export default function About() {
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.55, delay: 0.16 }}
           >
-            I&apos;m a Senior Software Engineer and Product Manager with over 8 years of experience
-            building full-stack SaaS platforms and microservices architecture. Based in Dhaka,
-            Bangladesh, I specialize in creating high-performance, scalable systems.
+            I&apos;m a Senior Software Engineer and Forward Deployed Engineer with 8+ years of
+            experience delivering scalable software and enterprise solutions across Switzerland,
+            Germany, Bangladesh, and the USA. I combine hands-on full-stack engineering with
+            AI integration, distributed systems, product ownership, and client-facing delivery.
           </motion.p>
           <motion.p
             className={styles.bio}
@@ -193,8 +194,8 @@ export default function About() {
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.55, delay: 0.24 }}
           >
-            From architecting distributed cloud systems to leading blockchain-based product
-            development, I thrive at the intersection of technical excellence and product thinking.
+            I&apos;m dependable, adaptive, and a fast learner, with experience leading technical teams,
+            aligning stakeholder and user needs, and shipping production-ready SaaS and ERP systems.
           </motion.p>
         </div>
       </div>
