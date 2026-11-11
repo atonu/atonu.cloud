@@ -400,6 +400,14 @@
 }
 
 @media (max-width: 640px) {
+  .videoDialog {
+    width: 100vw;
+    padding: 52px 4px 4px;
+    border-right: 0;
+    border-left: 0;
+    border-radius: 18px;
+  }
+
   .sceneFrame {
     height: 300px;
   }
@@ -423,6 +431,16 @@
 
   .expText {
     font-size: 0.58rem;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 500px) and (max-width: 950px) {
+  .videoDialog {
+    width: 100vw;
+    padding: 52px 4px 4px;
+    border-right: 0;
+    border-left: 0;
+    border-radius: 18px;
   }
 }
 
