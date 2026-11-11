@@ -96,21 +96,16 @@ export default function HeroSection({ id }: { id?: string }) {
 
           <div className={styles.ctaGroup}>
             <a
-              id="view-projects-btn"
+              id="watch-demo-btn"
               className="btn-primary"
-              href="#cases"
-              onClick={(e) => {
-                e.preventDefault();
-                const el = document.getElementById('cases');
-                if (el) {
-                  const targetY = el.getBoundingClientRect().top + window.scrollY;
-                  window.scrollTo({ top: targetY, behavior: 'smooth' });
-                }
-              }}
+              href="#about"
             >
-              View Cases →
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M8 5.14v13.72a1 1 0 0 0 1.5.86l11-6.86a1 1 0 0 0 0-1.72l-11-6.86A1 1 0 0 0 8 5.14Z" />
+              </svg>
+              Watch Demo
             </a>
-            <a id="contact-btn" href="mailto:atonu.zahin@gmail.com" className="btn-secondary">
+            <a id="contact-btn" href="#contact" className="btn-secondary">
               Let&apos;s Connect ↗
             </a>
           </div>

@@ -24,7 +24,26 @@ const highlights = [
 
 export default function About() {
   const ref = useRef<HTMLElement>(null);
+  const introDialogRef = useRef<HTMLDialogElement>(null);
+  const introVideoRef = useRef<HTMLVideoElement>(null);
   const reduceMotion = useReducedMotion();
+
+  const openIntroVideo = () => {
+    const dialog = introDialogRef.current;
+    const video = introVideoRef.current;
+    if (!dialog || !video) return;
+
+    dialog.showModal();
+    video.currentTime = 0;
+    void video.play().catch((error: unknown) => {
+      console.error('Unable to play the intro video', error);
+    });
+  };
+
+  const closeIntroVideo = () => {
+    introVideoRef.current?.pause();
+    if (introVideoRef.current) introVideoRef.current.currentTime = 0;
+  };
 
   return (
     <section className="section" ref={ref}>
@@ -157,6 +176,28 @@ export default function About() {
 
         {/* RIGHT: Text (Sticky) */}
         <div className={styles.textCol}>
+          <div className={styles.introPreview}>
+            <video
+              className={styles.introPreviewVideo}
+              src="/Intro.mp4"
+              preload="metadata"
+              playsInline
+              aria-hidden="true"
+            >
+              Your browser does not support the video tag.
+            </video>
+            <button
+              type="button"
+              className={styles.introPlayButton}
+              onClick={openIntroVideo}
+              aria-label="Play intro video"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M8 5.14v13.72a1 1 0 0 0 1.5.86l11-6.86a1 1 0 0 0 0-1.72l-11-6.86A1 1 0 0 0 8 5.14Z" />
+              </svg>
+              <span>Play intro</span>
+            </button>
+          </div>
           <motion.p
             className="section-label"
             initial={reduceMotion ? { opacity: 0 } : { opacity: 0, x: 32 }}
@@ -199,6 +240,37 @@ export default function About() {
           </motion.p>
         </div>
       </div>
+      <dialog
+        ref={introDialogRef}
+        className={styles.videoDialog}
+        aria-label="Intro video player"
+        onClose={closeIntroVideo}
+        onClick={(event) => {
+          if (event.target === event.currentTarget) event.currentTarget.close();
+        }}
+      >
+        <button
+          type="button"
+          className={styles.videoCloseButton}
+          onClick={() => introDialogRef.current?.close()}
+          aria-label="Close intro video"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+            <path d="m18 6-12 12M6 6l12 12" />
+          </svg>
+        </button>
+        <video
+          ref={introVideoRef}
+          className={styles.videoPlayer}
+          src="/Intro.mp4"
+          controls
+          playsInline
+          preload="none"
+          aria-label="Atonu Ahmed introduction video"
+        >
+          Your browser does not support the video tag.
+        </video>
+      </dialog>
     </section>
   );
 }
