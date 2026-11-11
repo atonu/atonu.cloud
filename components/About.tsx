@@ -180,7 +180,8 @@ export default function About() {
             <video
               className={styles.introPreviewVideo}
               src="/Intro.mp4"
-              preload="metadata"
+              poster="/intro-poster.webp"
+              preload="none"
               playsInline
               aria-hidden="true"
             >
@@ -263,6 +264,7 @@ export default function About() {
           ref={introVideoRef}
           className={styles.videoPlayer}
           src="/Intro.mp4"
+          poster="/intro-poster.webp"
           controls
           playsInline
           preload="none"
