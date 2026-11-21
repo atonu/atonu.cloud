@@ -146,6 +146,7 @@ export default function About() {
             <div className={styles.aiCardsStack}>
               {[
                 { name: 'Edgetech', link: 'https://edgetech.com.bd/', desc: 'Edge intelligence for real-time sensor processing and control.', bg: '/edgetech.webp' },
+                { name: 'Tickwell', link: 'https://tickwell.atonu.online/', desc: 'Time tracking, installable as an app, built for focus.', bg: '/tickwell.webp' },
                 { name: 'BI-Lite', link: 'https://lit-bi.vercel.app/', desc: 'Lightweight, high-performance Business Intelligence engine.', bg: '/bi-lite.webp' },
                 { name: 'Vellora', link: 'https://vellora-fe.vercel.app/', desc: 'State-of-the-art conversational AI interface.', bg: '/vellora.webp' },
               ].map((prod, i) => (
